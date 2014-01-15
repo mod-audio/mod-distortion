@@ -1,0 +1,79 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#>.
+@prefix doap: <http://usefulinc.com/ns/doap#>.
+@prefix epp: <http://lv2plug.in/ns/ext/port-props/#>.
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix units: <http://lv2plug.in/ns/extension/units#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix mod: <http://portalmod.com/ns/modgui#>.
+
+<http://portalmod.com/plugins/mod-devel/DS1>
+a lv2:Plugin, lv2:DistortionPlugin;
+
+doap:name "DS1";
+
+doap:developer [
+    foaf:name "Andre";
+    foaf:homepage <>;
+    foaf:mbox <mailto:andre_coutinho@rocketmail.com>;
+    ];
+
+doap:maintainer [
+    foaf:name "MOD Team";
+    foaf:homepage <http://portalmod.com>;
+    foaf:mbox <mailto:devel@portalmod.com>;
+    ];
+
+doap:license <GPL>;
+lv2:port 
+[
+    a lv2:AudioPort, lv2:InputPort;
+    lv2:index 0;
+    lv2:symbol "In";
+    lv2:name "In";
+],
+[
+    a lv2:AudioPort, lv2:OutputPort;
+    lv2:index 1;
+    lv2:symbol "Out1";
+    lv2:name "Out 1";
+],
+[
+    a lv2:ControlPort, lv2:InputPort;
+    lv2:index 2;
+    lv2:symbol "Tone";
+    lv2:name "Tone";
+    lv2:portProperty epp:logarithmic;
+    lv2:default 0.5;
+    lv2:minimum 0.01;
+    lv2:maximum 0.99;
+],
+[
+    a lv2:ControlPort, lv2:InputPort;
+    lv2:index 3;
+    lv2:symbol "Level";
+    lv2:name "Level";
+    lv2:portProperty epp:logarithmic;
+    lv2:default 0.5;
+    lv2:minimum 0.01;
+    lv2:maximum 0.99;
+],
+[
+    a lv2:ControlPort, lv2:InputPort;
+    lv2:index 4;
+    lv2:symbol "Dist";
+    lv2:name "Dist";
+    lv2:portProperty epp:logarithmic;
+    lv2:default 0.5;
+    lv2:minimum 0.01;
+    lv2:maximum 0.99;
+];
+ mod:gui [
+        a mod:Gui;
+        mod:resourcesDirectory <modgui>;
+        mod:iconTemplate <modgui/icon-ds1.html>;
+        mod:templateData <modgui/data-ds1.json>;
+        mod:screenshot <modgui/screenshot-ds1.png>;
+        mod:thumbnail <modgui/thumb-ds1.png>;
+    ] .
