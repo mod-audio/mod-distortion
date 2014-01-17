@@ -203,6 +203,11 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
     uint32_t n2;
     uint32_t n3;
     
+    for (uint32_t i=1; i<=n_samples; i++)
+    {
+		plugin->in[i-1] = 30*plugin->in[i-1];
+	}
+    
     switch (2)
     {
         case 1:
