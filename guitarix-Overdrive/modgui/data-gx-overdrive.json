@@ -1,0 +1,15 @@
+{
+    "author": "Guitarix", 
+    "color": "orange", 
+    "controls": [
+        {
+            "name": "drive", 
+            "symbol": "drive"
+        }, 
+        {
+            "name": "dry/wet", 
+            "symbol": "dry_wet"
+        }
+    ], 
+    "label": "Overdrive"
+}
