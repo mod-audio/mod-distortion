@@ -1,0 +1,127 @@
+<div class="mod-pedal mod-pedal-japanese mod-ds1">
+    <div mod-role="drag-handle" class="mod-drag-handle"></div>
+    <div class="mod-plugin-author"><h1 class="hidden">MOD</h1></div>
+    <div class="mod-plugin-name">
+      <h1>Distortion</h1>
+      <h2>DS-1</h2>
+    </div>
+    <div class="mod-light on" mod-role="bypass-light"></div>
+    <div class="mod-control-group clearfix">
+        <div class="mod-knob mod-knob-big">
+            <div class="mod-knob-image" mod-role="input-control-port" mod-port-symbol="Tone"></div>
+            <span class="mod-knob-title">Tone</span>
+        </div>
+        <div class="mod-knob mod-knob-small">
+            <span class="mod-knob-title">Level</span>
+            <div class="mod-knob-image" mod-role="input-control-port" mod-port-symbol="Level"></div>
+        </div>
+        <div class="mod-knob mod-knob-big">
+            <div class="mod-knob-image" mod-role="input-control-port" mod-port-symbol="Dist"></div>
+            <span class="mod-knob-title">Dist</span>
+        </div>
+    </div>
+   <div class="mod-footswitch" mod-role="bypass"></div>
+   <div class="mod-pedal-input">
+       {{#effect.ports.audio.input}}
+       <div class="mod-input mod-input-disconnected" title="{{name}}" mod-role="input-audio-port" mod-port-symbol="{{symbol}}">
+           <div class="mod-pedal-input-image"></div>
+       </div>
+       {{/effect.ports.audio.input}}
+        {{#effect.ports.midi.input}}
+        <div class="mod-input mod-input-disconnected" title="{{name}}" mod-role="input-midi-port" mod-port-symbol="{{symbol}}">
+            <div class="mod-pedal-input-image"></div>
+        </div>
+        {{/effect.ports.midi.input}}
+   </div>
+   <div class="mod-pedal-output">
+       {{#effect.ports.audio.output}}
+       <div class="mod-output mod-output-disconnected" title="{{name}}" mod-role="output-audio-port" mod-port-symbol="{{symbol}}">
+           <div class="mod-pedal-output-image"></div>
+       </div>
+       {{/effect.ports.audio.output}}
+        {{#effect.ports.midi.output}}
+        <div class="mod-output mod-output-disconnected" title="{{name}}" mod-role="output-midi-port" mod-port-symbol="{{symbol}}">
+            <div class="mod-pedal-input-image"></div>
+        </div>
+        {{/effect.ports.midi.output}}
+   </div>
+</div>
+
+
+<style type="text/css" media="screen">
+.mod-ds1 {
+  background-image: url(/resources/ds1-background.png?bundle=mod-ds1.lv2&url=http://portalmod.com/plugins/mod-devel/DS1) !important;
+}
+.mod-ds1 .mod-plugin-name {
+  margin-right: 10px;
+  text-align: right;
+}
+.mod-ds1 .mod-plugin-name h1 {
+  color: black !important;
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+.mod-ds1 .mod-plugin-name h2 {
+  color: black !important;
+  font-size: 27px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+.mod-ds1 .mod-light {
+  top: 30px;
+}
+.mod-ds1 .mod-control-group .mod-knob .mod-knob-title {
+  color: black !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+.mod-ds1 .mod-control-group .mod-knob-big {
+  height:100px;
+  float:left;
+  overflow:hidden;
+  position:relative;
+  text-align:center;
+  width:90px;
+}
+.mod-ds1 .mod-control-group .mod-knob-big .mod-knob-image {
+  background-image: url(/resources/ds1-knob-big.png?bundle=mod-ds1.lv2&url=http://portalmod.com/plugins/mod-devel/DS1);
+  background-position:left center;
+  background-repeat:no-repeat;
+  background-size:auto 90px;
+  height:90px;
+  margin:0 auto;
+  position:relative;
+  overflow:hidden;
+  width:90px;
+}
+.mod-ds1 .mod-control-group .mod-knob-small {
+  height:8  0px;
+  float:left;
+  overflow:hidden;
+  position:relative;
+  text-align:center;
+  top: 60px;
+  width:60px;
+}
+.mod-ds1 .mod-control-group .mod-knob-small .mod-knob-image {
+  background-image: url(/resources/ds1-knob-small.png?bundle=mod-ds1.lv2&url=http://portalmod.com/plugins/mod-devel/DS1);
+  background-position:left center;
+  background-repeat:no-repeat;
+  background-size:auto 60px;
+  height:60px;
+  margin:0 auto;
+  position:relative;
+  overflow:hidden;
+  width:60px;
+}
+.mod-ds1 .mod-pedal-input, .mod-ds1 .mod-pedal-output {
+  top: 175px;
+}
+
+</style>

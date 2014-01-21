@@ -69,11 +69,12 @@ lv2:port
     lv2:minimum 0.01;
     lv2:maximum 0.99;
 ];
- mod:gui [
-        a mod:Gui;
-        mod:resourcesDirectory <modgui>;
-        mod:iconTemplate <modgui/icon-ds1.html>;
-        mod:templateData <modgui/data-ds1.json>;
-        mod:screenshot <modgui/screenshot-ds1.png>;
-        mod:thumbnail <modgui/thumb-ds1.png>;
-    ] .
+
+mod:gui [
+    a mod:Gui;
+    mod:resourcesDirectory <modgui>;
+    mod:iconTemplate <modgui/icon-ds1.html>;
+    mod:templateData <modgui/data-ds1.json>;
+    mod:screenshot <modgui/screenshot-ds1.png>;
+    mod:thumbnail <modgui/thumb-ds1.png>;
+] .
