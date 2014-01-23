@@ -35,13 +35,14 @@ PLUGIN = overdrive
 PLUGIN_SO = $(PLUGIN).so
 
 # effect path
-EFFECT_PATH = $(PACKAGE)-$(PLUGIN).lv2
+EFFECT_PATH = $(PLUGIN).lv2
 
 # installation path
 ifndef INSTALL_PATH
 INSTALL_PATH = /usr/local/lib/lv2
 endif
 INSTALLATION_PATH = $(INSTALL_PATH)/$(EFFECT_PATH)
+
 
 # sources and objects
 SRC = $(wildcard $(SRC_DIR)/*.$(EXT))
@@ -61,3 +62,5 @@ install:
 	mkdir -p $(INSTALLATION_PATH)
 	cp $(PLUGIN_SO) $(INSTALLATION_PATH)
 	cp $(SRC_DIR)/*.ttl $(INSTALLATION_PATH)
+	mkdir $(INSTALLATION_PATH)/modgui
+	cp ttl/modgui/*.html ttl/modgui/*.json $(INSTALLATION_PATH)/modgui
