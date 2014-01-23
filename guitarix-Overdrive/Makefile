@@ -63,4 +63,4 @@ install:
 	cp $(PLUGIN_SO) $(INSTALLATION_PATH)
 	cp $(SRC_DIR)/*.ttl $(INSTALLATION_PATH)
 	mkdir $(INSTALLATION_PATH)/modgui
-	cp ttl/modgui/*.html ttl/modgui/*.json $(INSTALLATION_PATH)/modgui
+	cp modgui/*.html modgui/*.json $(INSTALLATION_PATH)/modgui
