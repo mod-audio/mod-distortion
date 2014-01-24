@@ -41,4 +41,4 @@ install:
 	cp $(PLUGIN) $(COMPLETE_INSTALL_PATH)
 	cp ttl/*.ttl $(COMPLETE_INSTALL_PATH)
 	mkdir $(COMPLETE_INSTALL_PATH)/modgui
-	cp ttl/modgui/*.html ttl/modgui/*.json $(COMPLETE_INSTALL_PATH)/modgui
+	cp ttl/modgui/*.html ttl/modgui/*.json ttl/modgui/*.png $(COMPLETE_INSTALL_PATH)/modgui
