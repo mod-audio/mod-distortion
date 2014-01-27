@@ -3,6 +3,9 @@ mod-distortion
 
 Analog distortion emulation developed by mod team (lv2)
 
+The effects were developed suposing you have a -15dB input signal when you play loud,
+so its recommended that you ajust your input gain to this level.
+
 Installation:
 
 	./make.sh

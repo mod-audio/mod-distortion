@@ -205,7 +205,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
     
     for (uint32_t i=1; i<=n_samples; i++)
     {
-		plugin->in[i-1] = 30*plugin->in[i-1];
+		plugin->in[i-1] = 5.6234*plugin->in[i-1]; //15dB
 	}
     
     switch (2)
