@@ -1,5 +1,5 @@
 
-NAME = mod-DS1
+NAME = mod-ds1
 
 # installation path
 INSTALL_PATH = /usr/local/lib/lv2
@@ -10,6 +10,7 @@ CC = g++
 LD = g++
 
 # flags
+# CFLAGS = -I. -O0 -g -ffast-math -Wall -Wextra -march=native -mtune=native -c -fPIC -DPIC
 CFLAGS = -I. -O6 -ffast-math -Wall -Wextra -march=native -mtune=native -c -fPIC -DPIC
 LDFLAGS = -shared -lc -lm -fPIC -DPIC
 
@@ -39,5 +40,5 @@ install:
 	mkdir -p $(COMPLETE_INSTALL_PATH)
 	cp $(PLUGIN) $(COMPLETE_INSTALL_PATH)
 	cp ttl/*.ttl $(COMPLETE_INSTALL_PATH)
-	#mkdir $(COMPLETE_INSTALL_PATH)/modgui
-	#cp ttl/modgui/*.html ttl/modgui/*.json $(COMPLETE_INSTALL_PATH)/modgui
+	mkdir -p $(COMPLETE_INSTALL_PATH)/modgui
+	cp ttl/modgui/*.html ttl/modgui/*.json ttl/modgui/*.png $(COMPLETE_INSTALL_PATH)/modgui

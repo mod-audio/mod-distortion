@@ -98,6 +98,7 @@ const LV2_Descriptor* lv2_descriptor(uint32_t index)
 
 LV2_Handle Distortion::instantiate(const LV2_Descriptor* descriptor, double samplerate, const char* bundle_path, const LV2_Feature* const* features)
 {
+    printf("--//**--//**--//**--//**--//**--//**--//**--//**--//**--//**--//**--//**--//**--//**--//**--//**sample: %f\n", samplerate );
     Distortion *plugin = new Distortion();
     
     plugin->u = (double*)malloc(TAMANHO_DO_BUFFER*sizeof(double));

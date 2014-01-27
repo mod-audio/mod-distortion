@@ -1,3 +1,3 @@
-cd DS1
+cd ds1
 make
 cd ..

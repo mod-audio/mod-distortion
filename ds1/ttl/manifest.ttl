@@ -2,6 +2,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 
 <http://portalmod.com/plugins/mod-devel/DS1> a lv2:Plugin;
-    lv2:binary <mod-DS1.so> ;
-    rdfs:seeAlso <DS1.ttl>.
+    lv2:binary <mod-ds1.so> ;
+    rdfs:seeAlso <ds1.ttl>.
 
