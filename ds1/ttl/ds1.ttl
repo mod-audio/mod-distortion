@@ -26,6 +26,10 @@ doap:maintainer [
     ];
 
 doap:license <GPL>;
+
+rdfs:comment """
+...
+""";
 lv2:port 
 [
     a lv2:AudioPort, lv2:InputPort;
