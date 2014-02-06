@@ -42,6 +42,7 @@ public:
     double *v3;
     
     double T;
+    double SampleRate;
     
     double h1u_1;
     double h1y_1;
@@ -114,6 +115,7 @@ LV2_Handle Distortion::instantiate(const LV2_Descriptor* descriptor, double samp
     plugin->v3 = (double*)malloc(8*TAMANHO_DO_BUFFER*sizeof(double));
     
     plugin->T = 1/samplerate;
+    plugin->SampleRate = samplerate;
     
     plugin->h1u_1 = 0;
     plugin->h1y_1 = 0;
@@ -236,8 +238,15 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
     
     /*****************************************************************/
     
-    Filter1(plugin->u, plugin->y, n2, T2, &plugin->h1u_1, &plugin->h1y_1 );
-    
+    if (plugin->SampleRate == 48000)
+    {
+		Filter1_48000(plugin->u, plugin->y, n2, &plugin->h1u_1, &plugin->h1y_1 );
+	}
+	else
+	{
+		Filter1(plugin->u, plugin->y, n2, T2, &plugin->h1u_1, &plugin->h1y_1 );
+	}
+	
     /*****************************************************************/
    
 
@@ -249,8 +258,16 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 	
 	/*****************************************************************/
 	
-	Filter2(plugin->u, plugin->y, n2, T2, &plugin->h2u_1, &plugin->h2y_1, &plugin->h2u_2, &plugin->h2y_2, &plugin->h2u_3, &plugin->h2y_3, &plugin->h2u_4, &plugin->h2y_4 );
-    
+	if (plugin->SampleRate == 48000)
+    {
+		Filter2_48000(plugin->u, plugin->y, n2, &plugin->h2u_1, &plugin->h2y_1, &plugin->h2u_2, &plugin->h2y_2, &plugin->h2u_3, &plugin->h2y_3, &plugin->h2u_4, &plugin->h2y_4 );
+	}
+	else
+	{
+		Filter2(plugin->u, plugin->y, n2, T2, &plugin->h2u_1, &plugin->h2y_1, &plugin->h2u_2, &plugin->h2y_2, &plugin->h2u_3, &plugin->h2y_3, &plugin->h2u_4, &plugin->h2y_4 );
+	}
+	
+	
    /*****************************************************************/
     
    
@@ -260,20 +277,31 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 		plugin->u[i-1] = plugin->y[i-1]; 
 	}
 	
-	
-    
-    FilterGain(plugin->u, plugin->y, n2, Dist, T2, &plugin->h3u_1, &plugin->h3y_1, &plugin->h3u_2, &plugin->h3y_2 );
-	
+    if (plugin->SampleRate == 48000)
+    {
+		FilterGain_48000(plugin->u, plugin->y, n2, Dist, &plugin->h3u_1, &plugin->h3y_1, &plugin->h3u_2, &plugin->h3y_2 );
+	}
+	else
+	{
+		FilterGain(plugin->u, plugin->y, n2, Dist, T2, &plugin->h3u_1, &plugin->h3y_1, &plugin->h3u_2, &plugin->h3y_2 );
+	}
+	 
+		
 	//Over 4x
 	
 	T3 = 0.25*T2;
     Over4_Double(plugin->y, plugin->u2, &plugin->h1u_1, n2);
     n3 = 4*n2;
-    
-    //
-    
-    DS1_Clip_Tone(plugin->u2, plugin->y2, plugin->v1, plugin->v2, plugin->v3, n3, T3, &plugin->u_1, &plugin->y_1, &plugin->v1_1, &plugin->v2_1, &plugin->v3_1, Tone, Level);
 
+
+    if (plugin->SampleRate == 48000)
+    {
+		DS1_Clip_Tone_48000(plugin->u2, plugin->y2, plugin->v1, plugin->v2, plugin->v3, n3, &plugin->u_1, &plugin->y_1, &plugin->v1_1, &plugin->v2_1, &plugin->v3_1, Tone, Level);
+	}
+	else
+	{
+		DS1_Clip_Tone(plugin->u2, plugin->y2, plugin->v1, plugin->v2, plugin->v3, n3, T3, &plugin->u_1, &plugin->y_1, &plugin->v1_1, &plugin->v2_1, &plugin->v3_1, Tone, Level);
+	}
     
     /*****************************************************************/
     
