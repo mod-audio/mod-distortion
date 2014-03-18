@@ -1,36 +1,36 @@
 #include <cmath>
-#include "Distortion_DS1.h"
+#include "Distortion_BigMuff.h"
 #include "HyperbolicTables.h"
 
 void Filter1(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
 {
 	const double R1 = 56e3;
 	const double R4 = 330e3;
-	const double R5 = 10e3;
-	const double R6 = 47e3;
-	const double R7 = 62e3;
-	const double R8 = 560e3;
-	const double R9 = 47;
-	const double R10 = 8.2e3;
-	const double R13 = 470e3;
-	const double R14 = 5.6e3;
-	const double R15 = 1.2e3;
-	const double R16 = 100e3;
+	//const double R5 = 10e3;
+	//const double R6 = 47e3;
+	//const double R7 = 62e3;
+	//const double R8 = 560e3;
+	//const double R9 = 47;
+	//const double R10 = 8.2e3;
+	//const double R13 = 470e3;
+	//const double R14 = 5.6e3;
+	//const double R15 = 1.2e3;
+	//const double R16 = 100e3;
 	
 	const double C1 = 150e-9;
-	const double C3 = 4.7e-9;
-	const double C4 = 10e-9;
-	const double C5 = 10e-6;
-	const double C6 = 10e-6;
-	const double C7 = 4.7e-6;
-	const double C9 = 150e-12;
-	const double C10 = 100e-9;
-	const double C11 = 1e-6;
-	const double C12 = 120e-9;
+	//const double C3 = 4.7e-9;
+	//const double C4 = 10e-9;
+	//const double C5 = 10e-6;
+	//const double C6 = 10e-6;
+	//const double C7 = 4.7e-6;
+	//const double C9 = 150e-12;
+	//const double C10 = 100e-9;
+	//const double C11 = 1e-6;
+	//const double C12 = 120e-9;
 	
-	const double P1 = 10e3;
-	const double P2 = 10e3;
-	const double P3 = 100e3;
+	//const double P1 = 10e3;
+	//const double P2 = 10e3;
+	//const double P3 = 100e3;
 	
 	double c = 2/T;
 	
@@ -73,33 +73,33 @@ void Filter1(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
 
 void Filter2(double *u, double *y, int N, double T, double *U_1, double *Y_1, double *U_2, double *Y_2, double *U_3, double *Y_3 )
 {
-	const double R1 = 56e3;
-	const double R4 = 330e3;
+	//const double R1 = 56e3;
+	//const double R4 = 330e3;
 	const double R5 = 10e3;
 	const double R6 = 47e3;
 	const double R7 = 62e3;
 	const double R8 = 560e3;
-	const double R9 = 47;
-	const double R10 = 8.2e3;
-	const double R13 = 470e3;
-	const double R14 = 5.6e3;
-	const double R15 = 1.2e3;
-	const double R16 = 100e3;
+	//const double R9 = 47;
+	//const double R10 = 8.2e3;
+	//const double R13 = 470e3;
+	//const double R14 = 5.6e3;
+	//const double R15 = 1.2e3;
+	//const double R16 = 100e3;
 	
-	const double C1 = 150e-9;
+	//const double C1 = 150e-9;
 	const double C3 = 4.7e-9;
 	const double C4 = 10e-9;
 	const double C5 = 10e-6;
-	const double C6 = 10e-6;
-	const double C7 = 4.7e-6;
-	const double C9 = 150e-12;
-	const double C10 = 100e-9;
-	const double C11 = 1e-6;
-	const double C12 = 120e-9;
+	//const double C6 = 10e-6;
+	//const double C7 = 4.7e-6;
+	//const double C9 = 150e-12;
+	//const double C10 = 100e-9;
+	//const double C11 = 1e-6;
+	//const double C12 = 120e-9;
 	
-	const double P1 = 10e3;
-	const double P2 = 10e3;
-	const double P3 = 100e3;
+	//const double P1 = 10e3;
+	//const double P2 = 10e3;
+	//const double P3 = 100e3;
 	
 	double c = 2/T;
 	
@@ -164,35 +164,35 @@ void Filter2(double *u, double *y, int N, double T, double *U_1, double *Y_1, do
 	
 }
 
-void Filter3(double *u, double *y, int N, double T, double *U_1, double *Y_1, double *U_2, double *Y_2, double x )
+void Filter3(double *u, double *y, int N, double T, double *U_1, double *Y_1, double *U_2, double *Y_2, double x, double x_1 )
 {
-	const double R1 = 56e3;
-	const double R4 = 330e3;
-	const double R5 = 10e3;
-	const double R6 = 47e3;
-	const double R7 = 62e3;
-	const double R8 = 560e3;
+	//const double R1 = 56e3;
+	//const double R4 = 330e3;
+	//const double R5 = 10e3;
+	//const double R6 = 47e3;
+	//const double R7 = 62e3;
+	//const double R8 = 560e3;
 	const double R9 = 47;
 	const double R10 = 8.2e3;
-	const double R13 = 470e3;
-	const double R14 = 5.6e3;
-	const double R15 = 1.2e3;
-	const double R16 = 100e3;
+	//const double R13 = 470e3;
+	//const double R14 = 5.6e3;
+	//const double R15 = 1.2e3;
+	//const double R16 = 100e3;
 	
-	const double C1 = 150e-9;
-	const double C3 = 4.7e-9;
-	const double C4 = 10e-9;
-	const double C5 = 10e-6;
+	//const double C1 = 150e-9;
+	//const double C3 = 4.7e-9;
+	//const double C4 = 10e-9;
+	//const double C5 = 10e-6;
 	const double C6 = 10e-6;
 	const double C7 = 4.7e-6;
-	const double C9 = 150e-12;
-	const double C10 = 100e-9;
-	const double C11 = 1e-6;
-	const double C12 = 120e-9;
+	//const double C9 = 150e-12;
+	//const double C10 = 100e-9;
+	//const double C11 = 1e-6;
+	//const double C12 = 120e-9;
 	
 	const double P1 = 10e3;
-	const double P2 = 10e3;
-	const double P3 = 100e3;
+	//const double P2 = 10e3;
+	//const double P3 = 100e3;
 	
 	double c = 2/T;
 	
@@ -213,27 +213,56 @@ void Filter3(double *u, double *y, int N, double T, double *U_1, double *Y_1, do
      y[k] = (-A1*y[k-1] -A2*y[k-2] + B0*u[k] + B1*u[k-1] + B2*u[k-2] )/A0
 	*/
 	
+	double X = ( (N-1-0)*x_1 + (0)*x )/(N-1);
+	
 	const double b0 = 0;
 	const double b1 = 0;
-	double b2 = -C6*C7*R10*(R9 + P1 x);
+	double b2 = -C6*C7*R10*(R9 + P1*X);
 	const double a0 = -1;
-	double a1 = -C6*(P1 + R9) - C7*(R10 + R9 + P1*x);
-	double a2 = C6*C7*(-R10*R9 + P1*P1*(-1 + x)*x - P1*(R10 + R9 - R9*x));
+	double a1 = -C6*(P1 + R9) - C7*(R10 + R9 + P1*X);
+	double a2 = C6*C7*(-R10*R9 + P1*P1*(-1 + X)*X - P1*(R10 + R9 - R9*X));
 	
 	double c2 = pow(c,2);
 	
 	double B0 = b0 + b1*c + b2*c2;
-	double B1 = 2*bo - 2*b2*c2;
+	double B1 = 2*b0 - 2*b2*c2;
 	double B2 = b0 - b1*c + b2*c2;
 	double A0 = a0 + a1*c + a2*c2;
-	double A1 = 2*ao - 2*a2*c2;
+	double A1 = 2*a0 - 2*a2*c2;
 	double A2 = a0 - a1*c + a2*c2;
 	
 	y[0] = (-A1*y_1 -A2*y_2 + B0*u[0] + B1*u_1 + B2*u_2)/A0;
+	
+	X = ( (N-1-1)*x_1 + (1)*x )/(N-1);
+	
+	b2 = -C6*C7*R10*(R9 + P1*X);
+	a1 = -C6*(P1 + R9) - C7*(R10 + R9 + P1*X);
+	a2 = C6*C7*(-R10*R9 + P1*P1*(-1 + X)*X - P1*(R10 + R9 - R9*X));
+	
+	B0 = b0 + b1*c + b2*c2;
+	B1 = 2*b0 - 2*b2*c2;
+	B2 = b0 - b1*c + b2*c2;
+	A0 = a0 + a1*c + a2*c2;
+	A1 = 2*a0 - 2*a2*c2;
+	A2 = a0 - a1*c + a2*c2;
+	
 	y[1] = (-A1*y[0] -A2*y_1 + B0*u[1] + B1*u[0] + B2*u_1)/A0;
 		
 	for (int i=2; i<=N-1; i++)
 	{
+		X = ( (N-1-i)*x_1 + (i)*x )/(N-1);
+	
+		b2 = -C6*C7*R10*(R9 + P1*X);
+		a1 = -C6*(P1 + R9) - C7*(R10 + R9 + P1*X);
+		a2 = C6*C7*(-R10*R9 + P1*P1*(-1 + X)*X - P1*(R10 + R9 - R9*X));
+	
+		B0 = b0 + b1*c + b2*c2;
+		B1 = 2*b0 - 2*b2*c2;
+		B2 = b0 - b1*c + b2*c2;
+		A0 = a0 + a1*c + a2*c2;
+		A1 = 2*a0 - 2*a2*c2;
+		A2 = a0 - a1*c + a2*c2;
+		
 		y[i] = (-A1*y[i-1] -A2*y[i-2] + B0*u[i] + B1*u[i-1] + B2*u[i-2])/A0;
 	}
 	
@@ -246,38 +275,38 @@ void Filter3(double *u, double *y, int N, double T, double *U_1, double *Y_1, do
 
 void Clip(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
 {
-	const double R1 = 56e3;
-	const double R4 = 330e3;
-	const double R5 = 10e3;
-	const double R6 = 47e3;
-	const double R7 = 62e3;
-	const double R8 = 560e3;
-	const double R9 = 47;
+	//const double R1 = 56e3;
+	//const double R4 = 330e3;
+	//const double R5 = 10e3;
+	//const double R6 = 47e3;
+	//const double R7 = 62e3;
+	//const double R8 = 560e3;
+	//const double R9 = 47;
 	const double R10 = 8.2e3;
 	const double R13 = 470e3;
-	const double R14 = 5.6e3;
-	const double R15 = 1.2e3;
-	const double R16 = 100e3;
+	//const double R14 = 5.6e3;
+	//const double R15 = 1.2e3;
+	//const double R16 = 100e3;
 	
-	const double C1 = 150e-9;
-	const double C3 = 4.7e-9;
-	const double C4 = 10e-9;
-	const double C5 = 10e-6;
-	const double C6 = 10e-6;
-	const double C7 = 4.7e-6;
+	//const double C1 = 150e-9;
+	//const double C3 = 4.7e-9;
+	//const double C4 = 10e-9;
+	//const double C5 = 10e-6;
+	//const double C6 = 10e-6;
+	//const double C7 = 4.7e-6;
 	const double C9 = 150e-12;
-	const double C10 = 100e-9;
-	const double C11 = 1e-6;
-	const double C12 = 120e-9;
+	//const double C10 = 100e-9;
+	//const double C11 = 1e-6;
+	//const double C12 = 120e-9;
 	
-	const double P1 = 10e3;
-	const double P2 = 10e3;
-	const double P3 = 100e3;
+	//const double P1 = 10e3;
+	//const double P2 = 10e3;
+	//const double P3 = 100e3;
 	
 	const double Is = 2.52*pow(10,-9);
 	const double Vt = 3*45.3/1000;
 	
-	double c = 2/T;
+	//double c = 2/T;
 	
 	double y_1 = Y_1[0];
 	double u_1 = U_1[0];
@@ -292,15 +321,15 @@ void Clip(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
 	
 	A = y_1;
 	B = T*Vt*(R13*(4*Is*R10*SINH(y_1/Vt)+u_1+u[0])+2*R10*y_1);
-	D = R10*((2*C9*R13+T)*Vt+2*Is*R13*T*Cosh(y_1/Vt));
+	D = R10*((2*C9*R13+T)*Vt+2*Is*R13*T*COSH(y_1/Vt));
 
 	y[0] = A - B/D;
 		
-	for (int k=1; k<=N-1; i++)
+	for (int k=1; k<=N-1; k++)
 	{
 		A = y[k-1];
 		B = T*Vt*(R13*(4*Is*R10*SINH(y[k-1]/Vt)+u[k-1]+u[k])+2*R10*y[k-1]);
-		D = R10*((2*C9*R13+T)*Vt+2*Is*R13*T*Cosh(y[k-1]/Vt));
+		D = R10*((2*C9*R13+T)*Vt+2*Is*R13*T*COSH(y[k-1]/Vt));
 
 		y[k] = A - B/D;
 	}
@@ -310,33 +339,33 @@ void Clip(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
 	
 }
 
-void Filter5(double *u, double *y, int N, double T, double *U_1, double *Y_1, double *U_2, double *Y_2, double *U_3, double *Y_3, double tone, double vol )
+void Filter4(double *u, double *y, int N, double T, double *U_1, double *Y_1, double *U_2, double *Y_2, double *U_3, double *Y_3, double tone, double vol )
 {
-	const double R1 = 56e3;
-	const double R4 = 330e3;
-	const double R5 = 10e3;
-	const double R6 = 47e3;
-	const double R7 = 62e3;
-	const double R8 = 560e3;
-	const double R9 = 47;
-	const double R10 = 8.2e3;
-	const double R13 = 470e3;
+	//const double R1 = 56e3;
+	//const double R4 = 330e3;
+	//const double R5 = 10e3;
+	//const double R6 = 47e3;
+	//const double R7 = 62e3;
+	//const double R8 = 560e3;
+	//const double R9 = 47;
+	//const double R10 = 8.2e3;
+	//const double R13 = 470e3;
 	const double R14 = 5.6e3;
 	const double R15 = 1.2e3;
 	const double R16 = 100e3;
 	
-	const double C1 = 150e-9;
-	const double C3 = 4.7e-9;
-	const double C4 = 10e-9;
-	const double C5 = 10e-6;
-	const double C6 = 10e-6;
-	const double C7 = 4.7e-6;
-	const double C9 = 150e-12;
+	//const double C1 = 150e-9;
+	//const double C3 = 4.7e-9;
+	//const double C4 = 10e-9;
+	//const double C5 = 10e-6;
+	//const double C6 = 10e-6;
+	//const double C7 = 4.7e-6;
+	//const double C9 = 150e-12;
 	const double C10 = 100e-9;
 	const double C11 = 1e-6;
 	const double C12 = 120e-9;
 	
-	const double P1 = 10e3;
+	//const double P1 = 10e3;
 	const double P2 = 10e3;
 	const double P3 = 100e3;
 	
