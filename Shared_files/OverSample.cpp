@@ -244,3 +244,35 @@ void Down8(float *out, double *y, uint32_t n)
 			out[i-1] = y[8*i-1];
 		}
 }
+
+void Down1_Double(double *out, double *y, uint32_t n)
+{
+	for (uint32_t i = 1; i <= n; i++)
+		{
+			out[i-1] = y[i-1];
+		}
+}
+
+void Down2_Double(double *out, double *y, uint32_t n)
+{
+	for (uint32_t i = 1; i <= n; i++)
+		{
+			out[i-1] = y[2*i-1];
+		}
+}
+
+void Down4_Double(double *out, double *y, uint32_t n)
+{
+	for (uint32_t i = 1; i <= n; i++)
+		{
+			out[i-1] = y[4*i-1];
+		}
+}
+
+void Down8_Double(double *out, double *y, uint32_t n)
+{
+	for (uint32_t i = 1; i <= n; i++)
+		{
+			out[i-1] = y[8*i-1];
+		}
+}

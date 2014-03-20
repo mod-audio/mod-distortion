@@ -13,3 +13,7 @@ void Down1(float *out, double *y, uint32_t n);
 void Down2(float *out, double *y, uint32_t n);
 void Down4(float *out, double *y, uint32_t n);
 void Down8(float *out, double *y, uint32_t n);
+void Down1_Double(double *out, double *y, uint32_t n);
+void Down2_Double(double *out, double *y, uint32_t n);
+void Down4_Double(double *out, double *y, uint32_t n);
+void Down8_Double(double *out, double *y, uint32_t n);
