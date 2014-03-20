@@ -290,7 +290,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 	//Over 4x
 	
 	T3 = 0.25*T2;
-    Over4_Double(plugin->y, plugin->u2, &plugin->h1u_1, n2);
+    Over4_Double(plugin->y, plugin->u2, &plugin->u_1, n2);
     n3 = 4*n2;
 
 
