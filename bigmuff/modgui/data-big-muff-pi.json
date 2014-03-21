@@ -1,0 +1,19 @@
+{
+    "author": "MOD", 
+    "color": "orange", 
+    "controls": [
+        {
+            "name": "Tone", 
+            "symbol": "Tone"
+        }, 
+        {
+            "name": "Level", 
+            "symbol": "Level"
+        }, 
+        {
+            "name": "Sustain", 
+            "symbol": "Sustain"
+        }
+    ], 
+    "label": "Big Muff Pi"
+}
