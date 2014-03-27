@@ -35,8 +35,10 @@ public:
     
     double *u;
     double *u2;
+    double *u3;
     double *y;
     double *y2;
+    double *y3;
     
     double T;
     double SampleRate;
@@ -111,6 +113,8 @@ LV2_Handle Distortion::instantiate(const LV2_Descriptor* descriptor, double samp
     plugin->y = (double*)malloc(2*TAMANHO_DO_BUFFER*sizeof(double));
     plugin->u2 = (double*)malloc(8*TAMANHO_DO_BUFFER*sizeof(double));
     plugin->y2 = (double*)malloc(8*TAMANHO_DO_BUFFER*sizeof(double));
+    plugin->u3 = (double*)malloc(TAMANHO_DO_BUFFER*sizeof(double));
+    plugin->y3 = (double*)malloc(TAMANHO_DO_BUFFER*sizeof(double));
     
     plugin->nSust = 50;
     plugin->Sust = (double*)calloc(plugin->nSust,sizeof(double));
@@ -205,6 +209,8 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 		plugin->y = (double*)realloc(plugin->y, 2*n_samples*sizeof(double));
 		plugin->u2 = (double*)realloc(plugin->u2, 8*n_samples*sizeof(double));
 		plugin->y2 = (double*)realloc(plugin->y2, 8*n_samples*sizeof(double));
+		plugin->u = (double*)realloc(plugin->u, n_samples*sizeof(double));
+		plugin->y = (double*)realloc(plugin->y, n_samples*sizeof(double));
     
 		plugin->cont = 1;
     
@@ -295,30 +301,18 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 	}
 	
 	/*****************************************************************/
-	
-	Filter4(plugin->u2, plugin->y2, n3, T3, &plugin->h4u_1, &plugin->h4y_1, &plugin->h4u_2, &plugin->h4y_2, &plugin->h4u_3, &plugin->h4y_3, Tone, Level);
     
-    switch (4)
-    {
-        case 1:
-            Down1(plugin->out_1, plugin->y2, n_samples);
-            break;
-        case 2:
-            Down2(plugin->out_1, plugin->y2, n_samples);
-            break;
-        case 3:
-            Down4(plugin->out_1, plugin->y2, n_samples);
-            break;
-        case 4:
-            Down8(plugin->out_1, plugin->y2, n_samples);
-            break;
-        default:
-            Down1(plugin->out_1, plugin->y2, n_samples);
-    }
+    Down8_Double(plugin->u3, plugin->y2, n_samples);
+    
+    /*****************************************************************/
+    
+    Filter4(plugin->u3, plugin->y3, n_samples, plugin->T, &plugin->h4u_1, &plugin->h4y_1, &plugin->h4u_2, &plugin->h4y_2, &plugin->h4u_3, &plugin->h4y_3, Tone, Level);
+	
+	 /*****************************************************************/
 	
 	 for (uint32_t i=1; i<=n_samples; i++)
     {
-		plugin->out_1[i-1] = plugin->out_1[i-1]/5.6234; //-15dB
+		plugin->out_1[i-1] = plugin->y3[i-1]/5.6234; //-15dB
 	}
 	
 	plugin->SustainMedia_1 = SustainMedia;
