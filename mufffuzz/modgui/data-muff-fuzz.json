@@ -1,0 +1,11 @@
+{
+    "author": "MOD", 
+    "color": "orange", 
+    "controls": [
+        {
+            "name": "Level", 
+            "symbol": "Level"
+        }
+    ], 
+    "label": "Muff Fuzz"
+}

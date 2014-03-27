@@ -54,3 +54,11 @@ lv2:port
     lv2:minimum 0.0001;
     lv2:maximum 1;
 ];
+mod:gui [
+        a mod:Gui;
+        mod:resourcesDirectory <modgui>;
+        mod:iconTemplate <modgui/icon-muff-fuzz.html>;
+        mod:templateData <modgui/data-muff-fuzz.json>;
+        mod:screenshot <modgui/screenshot-muff-fuzz.png>;
+        mod:thumbnail <modgui/thumb-muff-fuzz.png>;
+    ] .
