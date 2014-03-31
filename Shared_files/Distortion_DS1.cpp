@@ -2,17 +2,17 @@
 #include "Distortion_DS1.h"
 #include "HyperbolicTables.h"
 
-void Filter1(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
+void Filter1(float *u, float *y, int N, float SampleRate, float *U_1, float *Y_1 )
 {
-	const double R1 = 1000;
-	const double R2 = 470e3;
+	const float R1 = 1000;
+	const float R2 = 470e3;
 
-	const double C1 = 47e-9;
+	const float C1 = 47e-9;
 	
-	double c = 2/T;
+	float c = 2*SampleRate;
 	
-	double y_1 = Y_1[0];
-	double u_1 = U_1[0];
+	float y_1 = Y_1[0];
+	float u_1 = U_1[0];
 	
 	/*
 	             R2C1s       b1s + b0
@@ -26,15 +26,15 @@ void Filter1(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
      y[k] = (-A1*y[k-1] + B0*u[k] + B1*u[k-1] )/A0
 	*/
 	
-	const double b0 = 0;
-	const double b1 = R2*C1;
-	const double a0 = 1;
-	const double a1 = (R1+R2)*C1;
+	const float b0 = 0;
+	const float b1 = R2*C1;
+	const float a0 = 1;
+	const float a1 = (R1+R2)*C1;
 	
-	const double B0 = b0 + b1*c;
-	const double B1 = b0 - b1*c;
-	const double A0 = a0 + a1*c;
-	const double A1 = a0 - a1*c;	
+	const float B0 = b0 + b1*c;
+	const float B1 = b0 - b1*c;
+	const float A0 = a0 + a1*c;
+	const float A1 = a0 - a1*c;	
 	
 	y[0] = (-A1*y_1 + B0*u[0] + B1*u_1)/A0;
 		
@@ -48,7 +48,7 @@ void Filter1(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
 	
 }
 
-void Filter2(double *u, double *y, int N, double T, double *U_1, double *Y_1, double *U_2, double *Y_2, double *U_3, double *Y_3, double *U_4, double *Y_4 )
+void Filter2(float *u, float *y, int N, float SampleRate, float *U_1, float *Y_1, float *U_2, float *Y_2, float *U_3, float *Y_3, float *U_4, float *Y_4 )
 {
 	const double R45 = 90.909090909090907e3;
 	const double R6 = 100e3;
@@ -69,7 +69,7 @@ void Filter2(double *u, double *y, int N, double T, double *U_1, double *Y_1, do
 	const double C4 = 250e-12;
 	const double C5 = 68e-9;
 	
-	double c = 2/T;
+	double c = 2*SampleRate;
 	
 	double y_1 = Y_1[0];
 	double u_1 = U_1[0];
@@ -127,43 +127,43 @@ void Filter2(double *u, double *y, int N, double T, double *U_1, double *Y_1, do
 	
 }
 
-void FilterGain(double *u, double *y, int N, double Dist, double T, double *U_1, double *Y_1, double *U_2, double *Y_2 )
+void FilterGain(float *u, float *y, int N, float Dist, float SampleRate, float *U_1, float *Y_1, float *U_2, float *Y_2 )
 {
 	
-	const double Rd = 100e3;
-	const double R13 = 4.7e3;
-	const double Cc = 10e-12;
-	const double Cz = 470e-9;
+	const float Rd = 100e3;
+	const float R13 = 4.7e3;
+	const float Cc = 10e-12;
+	const float Cz = 470e-9;
 	
-	//const double Cc = 250e-12;
-	//const double Cz = 1000e-9;
+	//const float Cc = 250e-12;
+	//const float Cz = 1000e-9;
 	
-	double Rt = Dist*Rd;
-	double Rb = (1-Dist)*Rd + R13;
+	float Rt = Dist*Rd;
+	float Rb = (1-Dist)*Rd + R13;
 	
-	double Gt = 1/Rt;
-	double Gb = 1/Rb;
+	float Gt = 1/Rt;
+	float Gb = 1/Rb;
 	
-	double b0;
-	double b1;
-	double b2;
-	double a0;
-	double a1;
-	double a2;
+	float b0;
+	float b1;
+	float b2;
+	float a0;
+	float a1;
+	float a2;
 	
-	double B0;
-	double B1;
-	double B2;
-	double A0;
-	double A1;
-	double A2;
+	float B0;
+	float B1;
+	float B2;
+	float A0;
+	float A1;
+	float A2;
 	
-	double c = 2/T;
+	float c = 2*SampleRate;
 	
-	double y_1 = Y_1[0];
-	double u_1 = U_1[0];
-	double y_2 = Y_2[0];
-	double u_2 = U_2[0];
+	float y_1 = Y_1[0];
+	float u_1 = U_1[0];
+	float y_2 = Y_2[0];
+	float u_2 = U_2[0];
 	
 	/*
 	  
@@ -213,123 +213,123 @@ void FilterGain(double *u, double *y, int N, double Dist, double T, double *U_1,
 	
 }
 
-void DS1_Clip_Tone(double *u, double *y, double *v1, double *v2, double *v3,  int N, double T, double *U_1, double *Y_1, double *V1_1, double *V2_1, double *V3_1, double t, double vol)
+void DS1_Clip_Tone(float *u, float *y, float *v1, float *v2, float *v3,  int N, float T, float *U_1, float *Y_1, float *V1_1, float *V2_1, float *V3_1, float t, float vol)
 {
 	
-	const double R1 = 2.2e3;
-	const double R2 = 6.8e3;
-	const double R3 = 2.2e3;
-	const double R4 = 6.8e3;
-	const double Rt = 20e3;
-	const double Rv = 100e3;
+	const float R1 = 2.2e3;
+	const float R2 = 6.8e3;
+	const float R3 = 2.2e3;
+	const float R4 = 6.8e3;
+	const float Rt = 20e3;
+	const float Rv = 100e3;
 	
-	const double C1 = 470e-9;
-	const double C2 = 10e-9;
-	const double C3 = 100e-9;
-	const double C4 = 22e-9;
+	const float C1 = 470e-9;
+	const float C2 = 10e-9;
+	const float C3 = 100e-9;
+	const float C4 = 22e-9;
 
 
-	const double Is = 2.52e-9;
-	const double Vt = 45.3e-3;
+	const float Is = 2.52e-9;
+	const float Vt = 45.3e-3;
 	
-	double c1 = (1 + R3*( 1/R4 + 1/Rt ) )/( t*vol ) + (1-t)*(Rt/Rv)*(1 + R3*(1/R4 + 1/( (1-t)*Rt) ) )/vol;
-	double c2 = ( (t-1)/t )*(1 + R3*(1/R4 + 1/( (1-t)*Rt) ) );
-	double c3 = ( 1/R4 + 1/Rt )/( t*vol ) + (1-t)*(Rt/Rv)*(1/R4 + 1/( (1-t)*Rt) )/vol;
-	double c4 = ( (t-1)/t )*(1/R4 + 1/( (1-t)*Rt) );
+	float c1 = (1 + R3*( 1/R4 + 1/Rt ) )/( t*vol ) + (1-t)*(Rt/Rv)*(1 + R3*(1/R4 + 1/( (1-t)*Rt) ) )/vol;
+	float c2 = ( (t-1)/t )*(1 + R3*(1/R4 + 1/( (1-t)*Rt) ) );
+	float c3 = ( 1/R4 + 1/Rt )/( t*vol ) + (1-t)*(Rt/Rv)*(1/R4 + 1/( (1-t)*Rt) )/vol;
+	float c4 = ( (t-1)/t )*(1/R4 + 1/( (1-t)*Rt) );
 	
-	double y_1 = Y_1[0];
-	double u_1 = U_1[0];
-	double v1_1 = V1_1[0];
-	double v2_1 = V2_1[0];
-	double v3_1 = V3_1[0];
+	float y_1 = Y_1[0];
+	float u_1 = U_1[0];
+	float v1_1 = V1_1[0];
+	float v2_1 = V2_1[0];
+	float v3_1 = V3_1[0];
 	
-	const double E1_1 = 1;
-	//double const E1_2 = -1;
-	//double const E1_3 = 0;
-	//double const E1_4 = 0;
+	const float E1_1 = 1;
+	//float const E1_2 = -1;
+	//float const E1_3 = 0;
+	//float const E1_4 = 0;
 	
-	const double E2_1 = 0;
-	double E2_2 = 1 + ((T*Is)/(C2*Vt))*COSH( v2_1/Vt ); //Muda
-	const double E2_3 = 0;
-	const double E2_4 = 0;
+	const float E2_1 = 0;
+	float E2_2 = 1 + ((T*Is)/(C2*Vt))*COSH( v2_1/Vt ); //Muda
+	const float E2_3 = 0;
+	const float E2_4 = 0;
 	
-	//double const E3_1 = 0;
-	const double E3_2 = 0;
-	const double E3_3 = 1;
-	const double E3_4 = 0;
+	//float const E3_1 = 0;
+	const float E3_2 = 0;
+	const float E3_3 = 1;
+	const float E3_4 = 0;
 	
-	//double const E4_1 = 0;
-	//double const E4_2 = 1;
-	double E4_3 = -c2;
-	double E4_4 = -c1;
+	//float const E4_1 = 0;
+	//float const E4_2 = 1;
+	float E4_3 = -c2;
+	float E4_4 = -c1;
 	
-	const double F1_1 = 1/( 2*R1*C1 );
-	//double const F1_2 = 0;
-	//double const F1_3 = 0;
-	//double const F1_4 = 0;
+	const float F1_1 = 1/( 2*R1*C1 );
+	//float const F1_2 = 0;
+	//float const F1_3 = 0;
+	//float const F1_4 = 0;
 	
-	const double F2_1 = 1/( 2*R1*C2 );
-	const double F2_2 = 1/( 2*R2*C2 );
-	double F2_3 = (c4 - 1/R2)/( 2*C2 );
-	double F2_4 = c3/(2*C2);
+	const float F2_1 = 1/( 2*R1*C2 );
+	const float F2_2 = 1/( 2*R2*C2 );
+	float F2_3 = (c4 - 1/R2)/( 2*C2 );
+	float F2_4 = c3/(2*C2);
 	
-	//double const F3_1 = 0;
-	double const F3_2 = -1/( 2*R2*C3 );
-	double F3_3 = ( 1/R2 + 1/(t*Rt) )/( 2*C3 );
-	double F3_4 = -1/( 2*vol*t*Rt*C3 );
+	//float const F3_1 = 0;
+	float const F3_2 = -1/( 2*R2*C3 );
+	float F3_3 = ( 1/R2 + 1/(t*Rt) )/( 2*C3 );
+	float F3_4 = -1/( 2*vol*t*Rt*C3 );
 	
-	//double const F4_1 = 0;
-	//double const F4_2 = 0;
-	double F4_3 = -c4/(2*C4);
-	double F4_4 = -c3/(2*C4);
+	//float const F4_1 = 0;
+	//float const F4_2 = 0;
+	float F4_3 = -c4/(2*C4);
+	float F4_4 = -c3/(2*C4);
 	
 	
-	const double A1_1 = E1_1 + T*F1_1;
-	//double A1_2 = -1;
-	//double A1_3 = 0;
-	//double A1_4 = 0;
+	const float A1_1 = E1_1 + T*F1_1;
+	//float A1_2 = -1;
+	//float A1_3 = 0;
+	//float A1_4 = 0;
 	
-	const double A2_1 = E2_1 + T*F2_1;
-	double A2_2 = E2_2 + T*F2_2; //Muda
-	double A2_3 = E2_3 + T*F2_3;
-	double A2_4 = E2_4 + T*F2_4;
+	const float A2_1 = E2_1 + T*F2_1;
+	float A2_2 = E2_2 + T*F2_2; //Muda
+	float A2_3 = E2_3 + T*F2_3;
+	float A2_4 = E2_4 + T*F2_4;
 	
-	//double A3_1 = 0;
-	const double A3_2 = E3_2 + T*F3_2;
-	double A3_3 = E3_3 + T*F3_3;
-	double A3_4 = E3_4 + T*F3_4;
+	//float A3_1 = 0;
+	const float A3_2 = E3_2 + T*F3_2;
+	float A3_3 = E3_3 + T*F3_3;
+	float A3_4 = E3_4 + T*F3_4;
 	
-	//double A4_1 = 0;
-	//double A4_2 = 1;
-	double A4_3 = E4_3 + T*F4_3;
-	double A4_4 = E4_4 + T*F4_4;
+	//float A4_1 = 0;
+	//float A4_2 = 1;
+	float A4_3 = E4_3 + T*F4_3;
+	float A4_4 = E4_4 + T*F4_4;
 
 	
-	const double A_1_1 = E1_1 - T*F1_1;
-	const double A_1_2 = -1;
-	const double A_1_3 = 0;
-	const double A_1_4 = 0;
+	const float A_1_1 = E1_1 - T*F1_1;
+	const float A_1_2 = -1;
+	const float A_1_3 = 0;
+	const float A_1_4 = 0;
 	
-	const double A_2_1 = E2_1 - T*F2_1;
-	double A_2_2 = E2_2 - T*F2_2; //Muda
-	double A_2_3 = E2_3 - T*F2_3;
-	double A_2_4 = E2_4 - T*F2_4;
+	const float A_2_1 = E2_1 - T*F2_1;
+	float A_2_2 = E2_2 - T*F2_2; //Muda
+	float A_2_3 = E2_3 - T*F2_3;
+	float A_2_4 = E2_4 - T*F2_4;
 	
-	const double A_3_1 = 0;
-	const double A_3_2 = E3_2 - T*F3_2;
-	double A_3_3 = E3_3 - T*F3_3;
-	double A_3_4 = E3_4 - T*F3_4;
+	const float A_3_1 = 0;
+	const float A_3_2 = E3_2 - T*F3_2;
+	float A_3_3 = E3_3 - T*F3_3;
+	float A_3_4 = E3_4 - T*F3_4;
 	
-	const double A_4_1 = 0;
-	const double A_4_2 = 1;
-	double A_4_3 = E4_3 - T*F4_3;
-	double A_4_4 = E4_4 - T*F4_4;
+	const float A_4_1 = 0;
+	const float A_4_2 = 1;
+	float A_4_3 = E4_3 - T*F4_3;
+	float A_4_4 = E4_4 - T*F4_4;
 	
 	
-	double B1 = (T/( 2*R1*C1 ))*( u[0] + u_1) + A_1_1*v1_1 + A_1_2*v2_1 + A_1_3*v3_1 + A_1_4*y_1 ; //Muda
-	double B2 = (T/( 2*R1*C2 ))*( u[0] + u_1) + A_2_1*v1_1 + A_2_2*v2_1 + A_2_3*v3_1 + A_2_4*y_1 -(2*T*Is/C2)*SINH( v2_1/Vt) ; //Muda
-	double B3 = A_3_1*v1_1 + A_3_2*v2_1 + A_3_3*v3_1 + A_3_4*y_1; //Muda
-	double B4 = A_4_1*v1_1 + A_4_2*v2_1 + A_4_3*v3_1 + A_4_4*y_1; //Muda
+	float B1 = (T/( 2*R1*C1 ))*( u[0] + u_1) + A_1_1*v1_1 + A_1_2*v2_1 + A_1_3*v3_1 + A_1_4*y_1 ; //Muda
+	float B2 = (T/( 2*R1*C2 ))*( u[0] + u_1) + A_2_1*v1_1 + A_2_2*v2_1 + A_2_3*v3_1 + A_2_4*y_1 -(2*T*Is/C2)*SINH( v2_1/Vt) ; //Muda
+	float B3 = A_3_1*v1_1 + A_3_2*v2_1 + A_3_3*v3_1 + A_3_4*y_1; //Muda
+	float B4 = A_4_1*v1_1 + A_4_2*v2_1 + A_4_3*v3_1 + A_4_4*y_1; //Muda
 	
 	/*
 		
@@ -370,17 +370,17 @@ void DS1_Clip_Tone(double *u, double *y, double *v1, double *v2, double *v3,  in
 	
 }
 
-void Filter1_48000(double *u, double *y, int N, double *U_1, double *Y_1 )
+void Filter1_48000(float *u, float *y, int N, float *U_1, float *Y_1 )
 {
-	const double R1 = 1000;
-	const double R2 = 470e3;
+	const float R1 = 1000;
+	const float R2 = 470e3;
 
-	const double C1 = 47e-9;
+	const float C1 = 47e-9;
 	
-	const double c = 2*2*48000;
+	const float c = 2*2*48000;
 	
-	double y_1 = Y_1[0];
-	double u_1 = U_1[0];
+	float y_1 = Y_1[0];
+	float u_1 = U_1[0];
 	
 	/*
 	             R2C1s       b1s + b0
@@ -394,15 +394,15 @@ void Filter1_48000(double *u, double *y, int N, double *U_1, double *Y_1 )
      y[k] = (-A1*y[k-1] + B0*u[k] + B1*u[k-1] )/A0
 	*/
 	
-	const double b0 = 0;
-	const double b1 = R2*C1;
-	const double a0 = 1;
-	const double a1 = (R1+R2)*C1;
+	const float b0 = 0;
+	const float b1 = R2*C1;
+	const float a0 = 1;
+	const float a1 = (R1+R2)*C1;
 	
-	const double B0 = b0 + b1*c;
-	const double B1 = b0 - b1*c;
-	const double A0 = a0 + a1*c;
-	const double A1 = a0 - a1*c;	
+	const float B0 = b0 + b1*c;
+	const float B1 = b0 - b1*c;
+	const float A0 = a0 + a1*c;
+	const float A1 = a0 - a1*c;	
 	
 	y[0] = (-A1*y_1 + B0*u[0] + B1*u_1)/A0;
 		
@@ -416,7 +416,7 @@ void Filter1_48000(double *u, double *y, int N, double *U_1, double *Y_1 )
 	
 }
 
-void Filter2_48000(double *u, double *y, int N, double *U_1, double *Y_1, double *U_2, double *Y_2, double *U_3, double *Y_3, double *U_4, double *Y_4 )
+void Filter2_48000(float *u, float *y, int N, float *U_1, float *Y_1, float *U_2, float *Y_2, float *U_3, float *Y_3, float *U_4, float *Y_4 )
 {
 	const double R45 = 90.909090909090907e3;
 	const double R6 = 100e3;
@@ -495,42 +495,42 @@ void Filter2_48000(double *u, double *y, int N, double *U_1, double *Y_1, double
 	
 }
 
-void FilterGain_48000(double *u, double *y, int N, double Dist, double *U_1, double *Y_1, double *U_2, double *Y_2 )
+void FilterGain_48000(float *u, float *y, int N, float Dist, float *U_1, float *Y_1, float *U_2, float *Y_2 )
 {
-	const double Rd = 100e3;
-	const double R13 = 4.7e3;
-	const double Cc = 10e-12;
-	const double Cz = 470e-9;
+	const float Rd = 100e3;
+	const float R13 = 4.7e3;
+	const float Cc = 10e-12;
+	const float Cz = 470e-9;
 	
-	//const double Cc = 250e-12;
-	//const double Cz = 1000e-9;
+	//const float Cc = 250e-12;
+	//const float Cz = 1000e-9;
 	
-	double Rt = Dist*Rd;
-	double Rb = (1-Dist)*Rd + R13;
+	float Rt = Dist*Rd;
+	float Rb = (1-Dist)*Rd + R13;
 	
-	double Gt = 1/Rt;
-	double Gb = 1/Rb;
+	float Gt = 1/Rt;
+	float Gb = 1/Rb;
 	
-	double b0;
-	double b1;
-	double b2;
-	double a0;
-	double a1;
-	double a2;
+	float b0;
+	float b1;
+	float b2;
+	float a0;
+	float a1;
+	float a2;
 	
-	double B0;
-	double B1;
-	double B2;
-	double A0;
-	double A1;
-	double A2;
+	float B0;
+	float B1;
+	float B2;
+	float A0;
+	float A1;
+	float A2;
 	
-	const double c = 2*2*48000;
+	const float c = 2*2*48000;
 	
-	double y_1 = Y_1[0];
-	double u_1 = U_1[0];
-	double y_2 = Y_2[0];
-	double u_2 = U_2[0];
+	float y_1 = Y_1[0];
+	float u_1 = U_1[0];
+	float y_2 = Y_2[0];
+	float u_2 = U_2[0];
 	
 	/*
 	  
@@ -580,125 +580,125 @@ void FilterGain_48000(double *u, double *y, int N, double Dist, double *U_1, dou
 	
 }
 
-void DS1_Clip_Tone_48000(double *u, double *y, double *v1, double *v2, double *v3,  int N, double *U_1, double *Y_1, double *V1_1, double *V2_1, double *V3_1, double t, double vol)
+void DS1_Clip_Tone_48000(float *u, float *y, float *v1, float *v2, float *v3,  int N, float *U_1, float *Y_1, float *V1_1, float *V2_1, float *V3_1, float t, float vol)
 {
-	const double SampleRate = 8*48000;
-	const double T = 1/SampleRate;
+	const float SampleRate = 8*48000;
+	const float T = 1/SampleRate;
 	
-	const double R1 = 2.2e3;
-	const double R2 = 6.8e3;
-	const double R3 = 2.2e3;
-	const double R4 = 6.8e3;
-	const double Rt = 20e3;
-	const double Rv = 100e3;
+	const float R1 = 2.2e3;
+	const float R2 = 6.8e3;
+	const float R3 = 2.2e3;
+	const float R4 = 6.8e3;
+	const float Rt = 20e3;
+	const float Rv = 100e3;
 	
-	const double C1 = 470e-9;
-	const double C2 = 10e-9;
-	const double C3 = 100e-9;
-	const double C4 = 22e-9;
+	const float C1 = 470e-9;
+	const float C2 = 10e-9;
+	const float C3 = 100e-9;
+	const float C4 = 22e-9;
 
 
-	const double Is = 2.52e-9;
-	const double Vt = 45.3e-3;
+	const float Is = 2.52e-9;
+	const float Vt = 45.3e-3;
 	
-	double c1 = (1 + R3*( 1/R4 + 1/Rt ) )/( t*vol ) + (1-t)*(Rt/Rv)*(1 + R3*(1/R4 + 1/( (1-t)*Rt) ) )/vol;
-	double c2 = ( (t-1)/t )*(1 + R3*(1/R4 + 1/( (1-t)*Rt) ) );
-	double c3 = ( 1/R4 + 1/Rt )/( t*vol ) + (1-t)*(Rt/Rv)*(1/R4 + 1/( (1-t)*Rt) )/vol;
-	double c4 = ( (t-1)/t )*(1/R4 + 1/( (1-t)*Rt) );
+	float c1 = (1 + R3*( 1/R4 + 1/Rt ) )/( t*vol ) + (1-t)*(Rt/Rv)*(1 + R3*(1/R4 + 1/( (1-t)*Rt) ) )/vol;
+	float c2 = ( (t-1)/t )*(1 + R3*(1/R4 + 1/( (1-t)*Rt) ) );
+	float c3 = ( 1/R4 + 1/Rt )/( t*vol ) + (1-t)*(Rt/Rv)*(1/R4 + 1/( (1-t)*Rt) )/vol;
+	float c4 = ( (t-1)/t )*(1/R4 + 1/( (1-t)*Rt) );
 	
-	double y_1 = Y_1[0];
-	double u_1 = U_1[0];
-	double v1_1 = V1_1[0];
-	double v2_1 = V2_1[0];
-	double v3_1 = V3_1[0];
+	float y_1 = Y_1[0];
+	float u_1 = U_1[0];
+	float v1_1 = V1_1[0];
+	float v2_1 = V2_1[0];
+	float v3_1 = V3_1[0];
 	
-	const double E1_1 = 1;
-	//double const E1_2 = -1;
-	//double const E1_3 = 0;
-	//double const E1_4 = 0;
+	const float E1_1 = 1;
+	//float const E1_2 = -1;
+	//float const E1_3 = 0;
+	//float const E1_4 = 0;
 	
-	const double E2_1 = 0;
-	double E2_2 = 1 + ((T*Is)/(C2*Vt))*COSH( v2_1/Vt ); //Muda
-	const double E2_3 = 0;
-	const double E2_4 = 0;
+	const float E2_1 = 0;
+	float E2_2 = 1 + ((T*Is)/(C2*Vt))*COSH( v2_1/Vt ); //Muda
+	const float E2_3 = 0;
+	const float E2_4 = 0;
 	
-	//double const E3_1 = 0;
-	const double E3_2 = 0;
-	const double E3_3 = 1;
-	const double E3_4 = 0;
+	//float const E3_1 = 0;
+	const float E3_2 = 0;
+	const float E3_3 = 1;
+	const float E3_4 = 0;
 	
-	//double const E4_1 = 0;
-	//double const E4_2 = 1;
-	double E4_3 = -c2;
-	double E4_4 = -c1;
+	//float const E4_1 = 0;
+	//float const E4_2 = 1;
+	float E4_3 = -c2;
+	float E4_4 = -c1;
 	
-	const double F1_1 = 1/( 2*R1*C1 );
-	//double const F1_2 = 0;
-	//double const F1_3 = 0;
-	//double const F1_4 = 0;
+	const float F1_1 = 1/( 2*R1*C1 );
+	//float const F1_2 = 0;
+	//float const F1_3 = 0;
+	//float const F1_4 = 0;
 	
-	const double F2_1 = 1/( 2*R1*C2 );
-	const double F2_2 = 1/( 2*R2*C2 );
-	double F2_3 = (c4 - 1/R2)/( 2*C2 );
-	double F2_4 = c3/(2*C2);
+	const float F2_1 = 1/( 2*R1*C2 );
+	const float F2_2 = 1/( 2*R2*C2 );
+	float F2_3 = (c4 - 1/R2)/( 2*C2 );
+	float F2_4 = c3/(2*C2);
 	
-	//double const F3_1 = 0;
-	double const F3_2 = -1/( 2*R2*C3 );
-	double F3_3 = ( 1/R2 + 1/(t*Rt) )/( 2*C3 );
-	double F3_4 = -1/( 2*vol*t*Rt*C3 );
+	//float const F3_1 = 0;
+	float const F3_2 = -1/( 2*R2*C3 );
+	float F3_3 = ( 1/R2 + 1/(t*Rt) )/( 2*C3 );
+	float F3_4 = -1/( 2*vol*t*Rt*C3 );
 	
-	//double const F4_1 = 0;
-	//double const F4_2 = 0;
-	double F4_3 = -c4/(2*C4);
-	double F4_4 = -c3/(2*C4);
+	//float const F4_1 = 0;
+	//float const F4_2 = 0;
+	float F4_3 = -c4/(2*C4);
+	float F4_4 = -c3/(2*C4);
 	
 	
-	double A1_1 = E1_1 + T*F1_1;
-	//double A1_2 = -1;
-	//double A1_3 = 0;
-	//double A1_4 = 0;
+	float A1_1 = E1_1 + T*F1_1;
+	//float A1_2 = -1;
+	//float A1_3 = 0;
+	//float A1_4 = 0;
 	
-	double A2_1 = E2_1 + T*F2_1;
-	double A2_2 = E2_2 + T*F2_2; //Muda
-	double A2_3 = E2_3 + T*F2_3;
-	double A2_4 = E2_4 + T*F2_4;
+	float A2_1 = E2_1 + T*F2_1;
+	float A2_2 = E2_2 + T*F2_2; //Muda
+	float A2_3 = E2_3 + T*F2_3;
+	float A2_4 = E2_4 + T*F2_4;
 	
-	//double A3_1 = 0;
-	double A3_2 = E3_2 + T*F3_2;
-	double A3_3 = E3_3 + T*F3_3;
-	double A3_4 = E3_4 + T*F3_4;
+	//float A3_1 = 0;
+	float A3_2 = E3_2 + T*F3_2;
+	float A3_3 = E3_3 + T*F3_3;
+	float A3_4 = E3_4 + T*F3_4;
 	
-	//double A4_1 = 0;
-	//double A4_2 = 1;
-	double A4_3 = E4_3 + T*F4_3;
-	double A4_4 = E4_4 + T*F4_4;
+	//float A4_1 = 0;
+	//float A4_2 = 1;
+	float A4_3 = E4_3 + T*F4_3;
+	float A4_4 = E4_4 + T*F4_4;
 
 	
-	double A_1_1 = E1_1 - T*F1_1;
-	const double A_1_2 = -1;
-	const double A_1_3 = 0;
-	const double A_1_4 = 0;
+	float A_1_1 = E1_1 - T*F1_1;
+	const float A_1_2 = -1;
+	const float A_1_3 = 0;
+	const float A_1_4 = 0;
 	
-	double A_2_1 = E2_1 - T*F2_1;
-	double A_2_2 = E2_2 - T*F2_2; //Muda
-	double A_2_3 = E2_3 - T*F2_3;
-	double A_2_4 = E2_4 - T*F2_4;
+	float A_2_1 = E2_1 - T*F2_1;
+	float A_2_2 = E2_2 - T*F2_2; //Muda
+	float A_2_3 = E2_3 - T*F2_3;
+	float A_2_4 = E2_4 - T*F2_4;
 	
-	const double A_3_1 = 0;
-	double A_3_2 = E3_2 - T*F3_2;
-	double A_3_3 = E3_3 - T*F3_3;
-	double A_3_4 = E3_4 - T*F3_4;
+	const float A_3_1 = 0;
+	float A_3_2 = E3_2 - T*F3_2;
+	float A_3_3 = E3_3 - T*F3_3;
+	float A_3_4 = E3_4 - T*F3_4;
 	
-	const double A_4_1 = 0;
-	const double A_4_2 = 1;
-	double A_4_3 = E4_3 - T*F4_3;
-	double A_4_4 = E4_4 - T*F4_4;
+	const float A_4_1 = 0;
+	const float A_4_2 = 1;
+	float A_4_3 = E4_3 - T*F4_3;
+	float A_4_4 = E4_4 - T*F4_4;
 	
 	
-	double B1 = (T/( 2*R1*C1 ))*( u[0] + u_1) + A_1_1*v1_1 + A_1_2*v2_1 + A_1_3*v3_1 + A_1_4*y_1 ; //Muda
-	double B2 = (T/( 2*R1*C2 ))*( u[0] + u_1) + A_2_1*v1_1 + A_2_2*v2_1 + A_2_3*v3_1 + A_2_4*y_1 -(2*T*Is/C2)*SINH( v2_1/Vt) ; //Muda
-	double B3 = A_3_1*v1_1 + A_3_2*v2_1 + A_3_3*v3_1 + A_3_4*y_1; //Muda
-	double B4 = A_4_1*v1_1 + A_4_2*v2_1 + A_4_3*v3_1 + A_4_4*y_1; //Muda
+	float B1 = (T/( 2*R1*C1 ))*( u[0] + u_1) + A_1_1*v1_1 + A_1_2*v2_1 + A_1_3*v3_1 + A_1_4*y_1 ; //Muda
+	float B2 = (T/( 2*R1*C2 ))*( u[0] + u_1) + A_2_1*v1_1 + A_2_2*v2_1 + A_2_3*v3_1 + A_2_4*y_1 -(2*T*Is/C2)*SINH( v2_1/Vt) ; //Muda
+	float B3 = A_3_1*v1_1 + A_3_2*v2_1 + A_3_3*v3_1 + A_3_4*y_1; //Muda
+	float B4 = A_4_1*v1_1 + A_4_2*v2_1 + A_4_3*v3_1 + A_4_4*y_1; //Muda
 	
 	/*
 		
