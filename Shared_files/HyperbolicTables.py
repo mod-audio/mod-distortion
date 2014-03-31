@@ -9,12 +9,9 @@ getcontext().prec = 50
 if len(sys.argv) > 1:
     N = int(sys.argv[1])
 else:
-    N = Decimal(20000)
+    N = Decimal(8928)
 
-if len(sys.argv) > 2:
-    dx = Decimal(float(sys.argv[2]))
-else:
-    dx = Decimal(0.01)
+dx = Decimal(89.28)/N
 
 inicio = 0
 fim = (N-1)*dx
@@ -49,9 +46,9 @@ for i in range(N):
     value = Decimal ( cosh( Decimal ( i*dx ) ) )
     value2 = Decimal ( sinh( Decimal ( i*dx ) ) )
     value3 = Decimal ( asinh( Decimal ( i*dx ) ) )
-    v = "%.55f" % value
-    v2 = "%.55f" % value2
-    v3 = "%.55f" % value3
+    v = "%.40e" % value
+    v2 = "%.40e" % value2
+    v3 = "%.40e" % value3
     f.write(v + ',\n')	
     f2.write(v2 + ',\n')
     f3.write(v3 + ',\n')
