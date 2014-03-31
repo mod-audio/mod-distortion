@@ -8,7 +8,7 @@
 
 using namespace std;
 
-double SINH( double x)
+float SINH( float x)
 {
 	int flag = 1;
 	
@@ -18,7 +18,7 @@ double SINH( double x)
 		x = -x;
 	}
 	
-	double SinH;
+	float SinH;
 	
 	if( x > SINH_fim)
 	{
@@ -26,7 +26,7 @@ double SINH( double x)
 	}
 	else
 	{
-		double naux = x*SINH_Idx;
+		float naux = x*SINH_Idx;
 		int n = round(naux);
 		SinH = Sinh[n]*flag;
 	}
@@ -34,14 +34,14 @@ double SINH( double x)
 	return SinH;
 }
 
-double COSH( double x)
+float COSH( float x)
 {
 	if (x < 0)
 	{
 		x = -x;
 	}
 	
-	double CosH;
+	float CosH;
 	
 	if( x > COSH_fim)
 	{
@@ -49,7 +49,7 @@ double COSH( double x)
 	}
 	else
 	{
-		double naux = x*COSH_Idx;
+		float naux = x*COSH_Idx;
 		int n = round(naux);
 		CosH = Cosh[n];
 	}
@@ -57,7 +57,7 @@ double COSH( double x)
 	return CosH;
 }
 
-double ASINH( double x)
+float ASINH( float x)
 {
 	int flag = 1;
 	
@@ -67,7 +67,7 @@ double ASINH( double x)
 		x = -x;
 	}
 	
-	double ASinH;
+	float ASinH;
 	
 	if( x > ASINH_fim)
 	{
@@ -75,7 +75,7 @@ double ASINH( double x)
 	}
 	else
 	{
-		double naux = x*ASINH_Idx;
+		float naux = x*ASINH_Idx;
 		int n = round(naux);
 		ASinH = ASinh[n]*flag;
 	}

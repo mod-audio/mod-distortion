@@ -41,9 +41,9 @@ f3.write('#define ASINH_Idx ' + str(Idx) + '\n')
 f3.write('#define ASINH_fim ' + str(fim) + '\n\n')
 
 
-f.write('const double Cosh[] = {')
-f2.write('const double Sinh[] = {')
-f3.write('const double ASinh[] = {')
+f.write('const float Cosh[] = {')
+f2.write('const float Sinh[] = {')
+f3.write('const float ASinh[] = {')
 
 for i in range(N):
     value = Decimal ( cosh( Decimal ( i*dx ) ) )

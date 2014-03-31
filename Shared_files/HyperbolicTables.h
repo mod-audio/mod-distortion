@@ -1,5 +1,5 @@
 #include <cmath>
 
-double SINH( double x);
-double COSH( double x);
-double ASINH( double x);
+float SINH( float x);
+float COSH( float x);
+float ASINH( float x);
