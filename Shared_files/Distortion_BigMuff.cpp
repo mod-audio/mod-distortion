@@ -2,7 +2,7 @@
 #include "Distortion_BigMuff.h"
 #include "HyperbolicTables.h"
 
-void Filter1(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
+void Filter1(float *u, float *y, int N, double T, float *U_1, float *Y_1 )
 {
 	const double R1 = 56e3;
 	const double R4 = 330e3;
@@ -71,7 +71,7 @@ void Filter1(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
 	
 }
 
-void Filter2(double *u, double *y, int N, double T, double *U_1, double *Y_1, double *U_2, double *Y_2, double *U_3, double *Y_3 )
+void Filter2(float *u, float *y, int N, double T, float *U_1, float *Y_1, float *U_2, float *Y_2, float*U_3, float *Y_3 )
 {
 	//const double R1 = 56e3;
 	//const double R4 = 330e3;
@@ -164,7 +164,7 @@ void Filter2(double *u, double *y, int N, double T, double *U_1, double *Y_1, do
 	
 }
 
-void Filter3(double *u, double *y, int N, double T, double *U_1, double *Y_1, double *U_2, double *Y_2, double x, double x_1 )
+void Filter3(float *u, float *y, int N, double T, float *U_1, float *Y_1, float *U_2, float *Y_2, double x, double x_1 )
 {
 	//const double R1 = 56e3;
 	//const double R4 = 330e3;
@@ -273,7 +273,7 @@ void Filter3(double *u, double *y, int N, double T, double *U_1, double *Y_1, do
 	
 }
 
-void Clip(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
+void Clip(float *u, float *y, int N, double T, float *U_1, float *Y_1 )
 {
 	//const double R1 = 56e3;
 	//const double R4 = 330e3;
@@ -339,7 +339,7 @@ void Clip(double *u, double *y, int N, double T, double *U_1, double *Y_1 )
 	
 }
 
-void Filter4(double *u, double *y, int N, double T, double *U_1, double *Y_1, double *U_2, double *Y_2, double *U_3, double *Y_3, double tone, double vol )
+void Filter4(float *u, float *y, int N, double T, float *U_1, float *Y_1, float *U_2, float *Y_2, float *U_3, float *Y_3, double tone, double vol )
 {
 	//const double R1 = 56e3;
 	//const double R4 = 330e3;

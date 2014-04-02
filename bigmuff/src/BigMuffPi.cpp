@@ -10,7 +10,7 @@
 /**********************************************************************************************************************************************************/
 
 #define PLUGIN_URI "http://portalmod.com/plugins/mod-devel/BigMuffPi"
-#define TAMANHO_DO_BUFFER 256
+#define TAMANHO_DO_BUFFER 128
 enum {IN, OUT_1, TONE, LEVEL, SUSTAIN, PLUGIN_PORT_COUNT};
 
 /**********************************************************************************************************************************************************/
@@ -33,42 +33,42 @@ public:
     float *level;
     float *sustain;
     
-    double *u;
-    double *u2;
-    double *u3;
-    double *y;
-    double *y2;
-    double *y3;
+    float *u;
+    float *u2;
+    float *u3;
+    float *y;
+    float *y2;
+    float *y3;
     
     double T;
     double SampleRate;
     
-    double h1u_1;
-    double h1y_1;
+    float h1u_1;
+    float h1y_1;
     
-    double h2u_1;
-    double h2y_1;
-    double h2u_2;
-    double h2y_2;
-    double h2u_3;
-    double h2y_3;
+    float h2u_1;
+    float h2y_1;
+    float h2u_2;
+    float h2y_2;
+    float h2u_3;
+    float h2y_3;
     
-    double h3u_1;
-    double h3y_1;
-    double h3u_2;
-    double h3y_2;
-    double h3u_3;
-    double h3y_3;
+    float h3u_1;
+    float h3y_1;
+    float h3u_2;
+    float h3y_2;
+    float h3u_3;
+    float h3y_3;
     
-    double u_1;
-    double y_1;
+    float u_1;
+    float y_1;
     
-    double h4u_1;
-    double h4y_1;
-    double h4u_2;
-    double h4y_2;
-    double h4u_3;
-    double h4y_3;
+    float h4u_1;
+    float h4y_1;
+    float h4u_2;
+    float h4y_2;
+    float h4u_3;
+    float h4y_3;
     
     int cont;
     
@@ -109,12 +109,12 @@ LV2_Handle Distortion::instantiate(const LV2_Descriptor* descriptor, double samp
     
     plugin->cont = 0;
     
-    plugin->u = (double*)malloc(2*TAMANHO_DO_BUFFER*sizeof(double));
-    plugin->y = (double*)malloc(2*TAMANHO_DO_BUFFER*sizeof(double));
-    plugin->u2 = (double*)malloc(8*TAMANHO_DO_BUFFER*sizeof(double));
-    plugin->y2 = (double*)malloc(8*TAMANHO_DO_BUFFER*sizeof(double));
-    plugin->u3 = (double*)malloc(TAMANHO_DO_BUFFER*sizeof(double));
-    plugin->y3 = (double*)malloc(TAMANHO_DO_BUFFER*sizeof(double));
+    plugin->u = (float*)malloc(2*TAMANHO_DO_BUFFER*sizeof(float));
+    plugin->y = (float*)malloc(2*TAMANHO_DO_BUFFER*sizeof(float));
+    plugin->u2 = (float*)malloc(8*TAMANHO_DO_BUFFER*sizeof(float));
+    plugin->y2 = (float*)malloc(8*TAMANHO_DO_BUFFER*sizeof(float));
+    plugin->u3 = (float*)malloc(TAMANHO_DO_BUFFER*sizeof(float));
+    plugin->y3 = (float*)malloc(TAMANHO_DO_BUFFER*sizeof(float));
     
     plugin->nSust = 50;
     plugin->Sust = (double*)calloc(plugin->nSust,sizeof(double));
@@ -205,12 +205,12 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
     
     if( (n_samples > TAMANHO_DO_BUFFER) && (plugin->cont == 0) )
 	{
-		plugin->u = (double*)realloc(plugin->u, 2*n_samples*sizeof(double));
-		plugin->y = (double*)realloc(plugin->y, 2*n_samples*sizeof(double));
-		plugin->u2 = (double*)realloc(plugin->u2, 8*n_samples*sizeof(double));
-		plugin->y2 = (double*)realloc(plugin->y2, 8*n_samples*sizeof(double));
-		plugin->u = (double*)realloc(plugin->u, n_samples*sizeof(double));
-		plugin->y = (double*)realloc(plugin->y, n_samples*sizeof(double));
+		plugin->u = (float*)realloc(plugin->u, 2*n_samples*sizeof(float));
+		plugin->y = (float*)realloc(plugin->y, 2*n_samples*sizeof(float));
+		plugin->u2 = (float*)realloc(plugin->u2, 8*n_samples*sizeof(float));
+		plugin->y2 = (float*)realloc(plugin->y2, 8*n_samples*sizeof(float));
+		plugin->u3 = (float*)realloc(plugin->u3, n_samples*sizeof(float));
+		plugin->y3 = (float*)realloc(plugin->y3, n_samples*sizeof(float));
     
 		plugin->cont = 1;
     
@@ -252,7 +252,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 	//Over 2x
 	
 	T2 = 0.5*plugin->T;
-    Over2(plugin->in, plugin->u, &plugin->h1u_1, n_samples);
+    Over2_Float(plugin->in, plugin->u, &plugin->h1u_1, n_samples);
     n2 = 2*n_samples;
     
     /*****************************************************************/
@@ -286,7 +286,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 	//Over 4x
 	
 	T3 = 0.25*T2;
-    Over4_Double(plugin->y, plugin->u2, &plugin->u_1, n2);
+    Over4_Float(plugin->y, plugin->u2, &plugin->u_1, n2);
     n3 = 4*n2;
     
     /*****************************************************************/
@@ -302,7 +302,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 	
 	/*****************************************************************/
     
-    Down8_Double(plugin->u3, plugin->y2, n_samples);
+    Down8_Float(plugin->u3, plugin->y2, n_samples);
     
     /*****************************************************************/
     
@@ -330,6 +330,8 @@ void Distortion::cleanup(LV2_Handle instance)
 	free(plugin->y);
 	free(plugin->u2);
 	free(plugin->y2);
+	free(plugin->u3);
+	free(plugin->y3);
 	
 	free(plugin->Sust);
 	
