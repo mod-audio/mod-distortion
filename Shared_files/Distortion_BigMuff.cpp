@@ -4,38 +4,38 @@
 
 void Filter1(float *u, float *y, int N, double T, float *U_1, float *Y_1 )
 {
-	const double R1 = 56e3;
-	const double R4 = 330e3;
-	//const double R5 = 10e3;
-	//const double R6 = 47e3;
-	//const double R7 = 62e3;
-	//const double R8 = 560e3;
-	//const double R9 = 47;
-	//const double R10 = 8.2e3;
-	//const double R13 = 470e3;
-	//const double R14 = 5.6e3;
-	//const double R15 = 1.2e3;
-	//const double R16 = 100e3;
+	const float R1 = 56e3;
+	const float R4 = 330e3;
+	//const float R5 = 10e3;
+	//const float R6 = 47e3;
+	//const float R7 = 62e3;
+	//const float R8 = 560e3;
+	//const float R9 = 47;
+	//const float R10 = 8.2e3;
+	//const float R13 = 470e3;
+	//const float R14 = 5.6e3;
+	//const float R15 = 1.2e3;
+	//const float R16 = 100e3;
 	
-	const double C1 = 150e-9;
-	//const double C3 = 4.7e-9;
-	//const double C4 = 10e-9;
-	//const double C5 = 10e-6;
-	//const double C6 = 10e-6;
-	//const double C7 = 4.7e-6;
-	//const double C9 = 150e-12;
-	//const double C10 = 100e-9;
-	//const double C11 = 1e-6;
-	//const double C12 = 120e-9;
+	const float C1 = 150e-9;
+	//const float C3 = 4.7e-9;
+	//const float C4 = 10e-9;
+	//const float C5 = 10e-6;
+	//const float C6 = 10e-6;
+	//const float C7 = 4.7e-6;
+	//const float C9 = 150e-12;
+	//const float C10 = 100e-9;
+	//const float C11 = 1e-6;
+	//const float C12 = 120e-9;
 	
-	//const double P1 = 10e3;
-	//const double P2 = 10e3;
-	//const double P3 = 100e3;
+	//const float P1 = 10e3;
+	//const float P2 = 10e3;
+	//const float P3 = 100e3;
 	
-	double c = 2/T;
+	float c = 2/T;
 	
-	double y_1 = Y_1[0];
-	double u_1 = U_1[0];
+	float y_1 = Y_1[0];
+	float u_1 = U_1[0];
 	
 	/*
 	         b1s + b0
@@ -49,15 +49,15 @@ void Filter1(float *u, float *y, int N, double T, float *U_1, float *Y_1 )
      y[k] = (-A1*y[k-1] + B0*u[k] + B1*u[k-1] )/A0
 	*/
 	
-	const double b0 = 0;
-	const double b1 = -C1*R4;
-	const double a0 = 1;
-	const double a1 = C1*R1;
+	const float b0 = 0;
+	const float b1 = -C1*R4;
+	const float a0 = 1;
+	const float a1 = C1*R1;
 	
-	double B0 = b0 + b1*c;
-	double B1 = b0 - b1*c;
-	double A0 = a0 + a1*c;
-	double A1 = a0 - a1*c;	
+	float B0 = b0 + b1*c;
+	float B1 = b0 - b1*c;
+	float A0 = a0 + a1*c;
+	float A1 = a0 - a1*c;	
 	
 	y[0] = (-A1*y_1 + B0*u[0] + B1*u_1)/A0;
 		
