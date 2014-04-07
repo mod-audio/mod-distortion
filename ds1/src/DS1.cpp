@@ -71,6 +71,8 @@ public:
     float v3_1;
     
     int cont;
+    
+    ClipClass obj;
 };
 
 /**********************************************************************************************************************************************************/
@@ -294,14 +296,8 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
     n3 = 4*n2;
 
 
-    if (plugin->SampleRate == 48000)
-    {
-		DS1_Clip_Tone_48000(plugin->u2, plugin->y2, plugin->v1, plugin->v2, plugin->v3, n3, &plugin->u_1, &plugin->y_1, &plugin->v1_1, &plugin->v2_1, &plugin->v3_1, Tone, Level);
-	}
-	else
-	{
-		DS1_Clip_Tone(plugin->u2, plugin->y2, plugin->v1, plugin->v2, plugin->v3, n3, T3, &plugin->u_1, &plugin->y_1, &plugin->v1_1, &plugin->v2_1, &plugin->v3_1, Tone, Level);
-	}
+
+		DS1_Clip_Tone(plugin->u2, plugin->y2, plugin->v1, plugin->v2, plugin->v3, n3, T3, &plugin->u_1, &plugin->y_1, &plugin->v1_1, &plugin->v2_1, &plugin->v3_1, Tone, Level, &plugin->obj);
     
     /*****************************************************************/
     
