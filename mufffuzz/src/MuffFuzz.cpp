@@ -4,7 +4,6 @@
 #include <math.h>
 #include <lv2.h>
 #include "Distortion_MuffFuzz.h"
-#include "ModFilters.h"
 #include "OverSample.h"
 
 /**********************************************************************************************************************************************************/
