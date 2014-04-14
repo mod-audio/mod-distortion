@@ -311,7 +311,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 	
 	 for (uint32_t i=1; i<=n_samples; i++)
     {
-		plugin->out_1[i-1] = plugin->y3[i-1]/5.6234; //-15dB
+		plugin->out_1[i-1] = plugin->y3[i-1]/20; //-26dB
 	}
 	
 	plugin->SustainMedia_1 = SustainMedia;
