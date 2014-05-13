@@ -1,0 +1,80 @@
+
+.mod-bigmuff {
+  background-image: url(/resources/bg.jpg{{{ns}}}) !important;
+}
+.mod-bigmuff .mod-plugin-name {
+  margin-right: 10px;
+  text-align: right;
+  display: none;
+}
+.mod-bigmuff .mod-plugin-name h1 {
+  color: black !important;
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+  display: none;
+  padding: 0;
+}
+.mod-bigmuff .mod-plugin-name h2 {
+  color: #eeca00 !important;
+  font-size: 27px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  display: none;
+  text-transform: uppercase;
+}
+.mod-bigmuff .mod-light {
+  top: 150px;
+}
+.mod-bigmuff .mod-control-group {
+  top: 20px;
+}
+
+.mod-bigmuff .mod-control-group .mod-knob .mod-knob-title {
+  color: #eeca00 !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+.mod-bigmuff .mod-control-group .mod-knob-big {
+  height:100px;
+  float:left;
+  overflow:hidden;
+  position:relative;
+  text-align:center;
+  width:90px;
+}
+.mod-bigmuff .mod-control-group .mod-knob .mod-knob-image {
+  background-image: url(/resources/knob.png{{{ns}}});
+  background-position:left center;
+  background-repeat:no-repeat;
+  background-size:auto 90px;
+  height:90px;
+  margin:0 auto;
+  position:relative;
+  overflow:hidden;
+  width:90px;
+}
+.mod-bigmuff .mod-pedal-input, .mod-bigmuff .mod-pedal-output {
+  top: 175px;
+}
+.mod-bigmuff .mod-footswitch {
+    background-image:url(/resources/footswitch.png{{{ns}}});
+    background-position:top center;
+    background-repeat:no-repeat;
+    background-size:auto 132px;
+    bottom: 70px;
+    cursor:pointer;
+    height:66px;
+    left:13px;
+    position:absolute;
+    right:13px;
+}
+.mod-bigmuff .mod-footswitch.on {
+    background-position:top center;
+}
+.mod-bigmuff .mod-footswitch.off {
+    background-position:bottom center;
+}
