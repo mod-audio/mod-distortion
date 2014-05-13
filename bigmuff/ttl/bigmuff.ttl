@@ -81,6 +81,6 @@ mod:gui [
         mod:resourcesDirectory <modgui>;
         mod:iconTemplate <modgui/icon-big-muff-pi.html>;
         mod:templateData <modgui/data-big-muff-pi.json>;
-        mod:screenshot <modgui/screenshot-big-muff-pi.png>;
-        mod:thumbnail <modgui/thumb-big-muff-pi.png>;
+        mod:screenshot <modgui/screenshot-big-muff.png>;
+        mod:thumbnail <modgui/thumb-big-muff.png>;
     ] .
