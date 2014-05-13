@@ -11,7 +11,7 @@
 <http://portalmod.com/plugins/mod-devel/BigMuffPi>
 a lv2:Plugin, lv2:DistortionPlugin;
 
-doap:name "Big Muff Pi";
+doap:name "Open Big Muff";
 
 doap:developer [
     foaf:name "Andre";
