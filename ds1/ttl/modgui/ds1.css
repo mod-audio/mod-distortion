@@ -36,6 +36,7 @@
   position:relative;
   text-align:center;
   width:90px;
+  cursor: pointer;
 }
 .mod-ds1 .mod-control-group .mod-knob-big .mod-knob-image {
   background-image: url(/resources/ds1-knob-big.png{{{ns}}});
@@ -56,6 +57,7 @@
   text-align:center;
   top: 60px;
   width:60px;
+  cursor: pointer;
 }
 .mod-ds1 .mod-control-group .mod-knob-small .mod-knob-image {
   background-image: url(/resources/ds1-knob-small.png{{{ns}}});
