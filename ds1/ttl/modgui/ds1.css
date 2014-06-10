@@ -1,5 +1,5 @@
 .mod-ds1 {
-  background-image: url('modgui/ds1-background.png') !important;
+  background-image: url(/resources/ds1-background.png{{{ns}}}) !important;
 }
 .mod-ds1 .mod-plugin-name {
   margin-right: 10px;
@@ -20,7 +20,6 @@
   line-height: 1;
   margin: 0;
   padding: 0;
-  text-transform: uppercase;
 }
 .mod-ds1 .mod-light {
   top: 30px;
@@ -39,7 +38,7 @@
   width:90px;
 }
 .mod-ds1 .mod-control-group .mod-knob-big .mod-knob-image {
-  background-image: url(/resources/ds1-knob-big.png?bundle=mod-ds1.lv2&url=http://portalmod.com/plugins/mod-devel/DS1);
+  background-image: url(/resources/ds1-knob-big.png{{{ns}}});
   background-position:left center;
   background-repeat:no-repeat;
   background-size:auto 90px;
@@ -59,7 +58,7 @@
   width:60px;
 }
 .mod-ds1 .mod-control-group .mod-knob-small .mod-knob-image {
-  background-image: url(/resources/ds1-knob-small.png?bundle=mod-ds1.lv2&url=http://portalmod.com/plugins/mod-devel/DS1);
+  background-image: url(/resources/ds1-knob-small.png{{{ns}}});
   background-position:left center;
   background-repeat:no-repeat;
   background-size:auto 60px;

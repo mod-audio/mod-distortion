@@ -83,6 +83,7 @@ lv2:port
 mod:gui [
     a mod:Gui;
     mod:resourcesDirectory <modgui>;
+    mod:stylesheet <modgui/ds1.css>;
     mod:iconTemplate <modgui/icon-ds1.html>;
     mod:templateData <modgui/data-ds1.json>;
     mod:screenshot <modgui/screenshot-ds1.png>;
