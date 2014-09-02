@@ -1,3 +1,12 @@
 cd ds1
 make clean
 cd ..
+cd bigmuff
+make clean
+cd ..
+cd mufffuzz
+make clean
+cd ..
+cd guitarix-Overdrive
+make clean
+cd ..
