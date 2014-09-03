@@ -1,5 +1,7 @@
 
 # run make in each plugins subdirectory
+INSTALL_PATH = /usr/local/lib/lv2
+
 .PHONY:
 	all
 
