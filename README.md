@@ -6,6 +6,10 @@ Analog distortion emulation developed by mod team (lv2)
 The effects were developed suposing you have a -15dB input signal (measured with digital peak meter)
 when you play loud, so its recommended that you ajust your input gain to this level.
 
+We recommend that you use only the stable plugins:
+-DS1
+-Big Muff Pi
+
 Installation:
 
 	./make.sh

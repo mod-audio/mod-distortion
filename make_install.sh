@@ -4,9 +4,3 @@ cd ..
 cd bigmuff
 make install
 cd ..
-cd mufffuzz
-make install
-cd ..
-cd guitarix-Overdrive
-make install
-cd ..
