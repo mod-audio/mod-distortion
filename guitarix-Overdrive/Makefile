@@ -10,8 +10,8 @@ CC = g++
 LD = g++
 
 # flags
-CFLAGS = -O3 -funroll-loops -ffast-math -fomit-frame-pointer -fstrength-reduce -fPIC -DPIC $(SSE_CFLAGS) $(SSE3_CFLAGS)
-LDFLAGS = -shared -nostartfiles -Wl,-Bsymbolic
+CFLAGS += -O3 -funroll-loops -ffast-math -fomit-frame-pointer -fstrength-reduce -fPIC -DPIC $(SSE_CFLAGS) $(SSE3_CFLAGS)
+LDFLAGS += -shared -nostartfiles -Wl,-Bsymbolic
 
 ifneq (cat /proc/cpuinfo | grep sse >/dev/null,)
 SSE_CFLAGS = -msse -mfpmath=sse

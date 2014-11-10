@@ -11,8 +11,8 @@ LD = g++
 
 # flags
 # CFLAGS = -I. -O0 -g -ffast-math -Wall -Wextra -march=native -mtune=native -c -fPIC -DPIC
-CFLAGS = -I. -O6 -ffast-math -Wall -Wextra -march=native -mtune=native -c -fPIC -DPIC
-LDFLAGS = -shared -lc -lm -fPIC -DPIC
+CFLAGS += -I. -O6 -ffast-math -Wall -Wextra -march=native -mtune=native -c -fPIC -DPIC
+LDFLAGS += -shared -lc -lm -fPIC -DPIC
 
 # libs
 LIBS = -lm
@@ -41,4 +41,4 @@ install:
 	cp $(PLUGIN) $(COMPLETE_INSTALL_PATH)
 	cp ttl/*.ttl $(COMPLETE_INSTALL_PATH)
 	mkdir -p $(COMPLETE_INSTALL_PATH)/modgui
-	cp ttl/modgui/*.html ttl/modgui/*.json ttl/modgui/*.png $(COMPLETE_INSTALL_PATH)/modgui
+	cp ttl/modgui/*.css ttl/modgui/*.html ttl/modgui/*.json ttl/modgui/*.png $(COMPLETE_INSTALL_PATH)/modgui
