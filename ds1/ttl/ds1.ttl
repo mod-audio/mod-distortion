@@ -6,7 +6,8 @@
 @prefix units: <http://lv2plug.in/ns/extension/units#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
-@prefix mod: <http://moddevices.com/ns/modgui#>.
+@prefix mod: <http://moddevices.com/ns/mod#>.
+@prefix modgui: <http://moddevices.com/ns/modgui#>.
 
 <http://moddevices.com/plugins/mod-devel/DS1>
 a lv2:Plugin, lv2:DistortionPlugin;
@@ -25,7 +26,10 @@ doap:maintainer [
     foaf:mbox <mailto:devel@moddevices.com>;
     ];
 
-doap:license <GPL>;
+mod:brand "MOD";
+mod:label "DS1";
+
+doap:license "GPL";
 
 rdfs:comment """
 Analog distortion emulation of the classic Boss DS-1 (*)
@@ -80,12 +84,11 @@ lv2:port
     lv2:maximum 0.99;
 ];
 
-mod:gui [
-    a mod:Gui;
-    mod:resourcesDirectory <modgui>;
-    mod:stylesheet <modgui/ds1.css>;
-    mod:iconTemplate <modgui/icon-ds1.html>;
-    mod:templateData <modgui/data-ds1.json>;
-    mod:screenshot <modgui/screenshot-ds1.png>;
-    mod:thumbnail <modgui/thumb-ds1.png>;
+modgui:gui [
+    a modgui:Gui;
+    modgui:resourcesDirectory <modgui>;
+    modgui:stylesheet <modgui/ds1.css>;
+    modgui:iconTemplate <modgui/icon-ds1.html>;
+    modgui:screenshot <modgui/screenshot-ds1.png>;
+    modgui:thumbnail <modgui/thumb-ds1.png>;
 ] .

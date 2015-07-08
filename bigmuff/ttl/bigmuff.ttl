@@ -6,7 +6,8 @@
 @prefix units: <http://lv2plug.in/ns/extension/units#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
-@prefix mod: <http://moddevices.com/ns/modgui#>.
+@prefix mod: <http://moddevices.com/ns/mod#>.
+@prefix modgui: <http://moddevices.com/ns/modgui#>.
 
 <http://moddevices.com/plugins/mod-devel/BigMuffPi>
 a lv2:Plugin, lv2:DistortionPlugin;
@@ -25,7 +26,10 @@ doap:maintainer [
     foaf:mbox <mailto:devel@moddevices.com>;
     ];
 
-doap:license <GPL>;
+mod:brand "MOD";
+mod:label "Big Muff";
+
+doap:license "GPL";
 
 rdfs:comment """
 Analog distortion emulation of the classic Electro Harmonix Big Muff Pi (*)
@@ -76,11 +80,29 @@ lv2:port
     lv2:minimum 0;
     lv2:maximum 1;
 ];
-mod:gui [
-        a mod:Gui;
-        mod:resourcesDirectory <modgui>;
-        mod:iconTemplate <modgui/icon-big-muff-pi.html>;
-        mod:templateData <modgui/data-big-muff-pi.json>;
-        mod:screenshot <modgui/screenshot-big-muff.png>;
-        mod:thumbnail <modgui/thumb-big-muff.png>;
-    ] .
+modgui:gui [
+        a modgui:Gui;
+        modgui:resourcesDirectory <modgui>;
+        modgui:iconTemplate <modgui/icon-big-muff-pi.html>;
+        modgui:stylesheet <modgui/bigmuff.css>;
+        modgui:screenshot <modgui/screenshot-big-muff.png>;
+        modgui:thumbnail <modgui/thumb-big-muff.png>;
+        modgui:color "orange";
+        modgui:brand "MOD";
+        modgui:label "Big Muff";
+        modgui:port [
+            lv2:index 0;
+            lv2:name "Tone";
+            lv2:symbol "Tone";
+        ],
+        [
+            lv2:index 1;
+            lv2:name "Level";
+            lv2:symbol "Level";
+        ],
+        [
+            lv2:index 2;
+            lv2:name "Sustain";
+            lv2:symbol "Sustain";
+        ];
+    ].
