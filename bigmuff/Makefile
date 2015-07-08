@@ -3,19 +3,14 @@ NAME = mod-bigmuff
 
 # installation path
 INSTALL_PATH = /usr/local/lib/lv2
-COMPLETE_INSTALL_PATH = $(INSTALL_PATH)/$(NAME).lv2
+COMPLETE_INSTALL_PATH = $(DESTDIR)$(INSTALL_PATH)/$(NAME).lv2
 
 # compiler and linker
-CC = g++
-LD = g++
+CXX ?= g++
 
 # flags
-# CFLAGS = -I. -O0 -g -ffast-math -Wall -Wextra -c -fPIC -DPIC
-CFLAGS += -I. -O6 -ffast-math -Wall -Wextra -c -fPIC -DPIC
-LDFLAGS += -shared -lc -lm -fPIC -DPIC
-
-# libs
-LIBS = -lm
+CXXFLAGS += -I. -O3 -ffast-math -Wall -Wextra -c -fPIC -DPIC
+LDFLAGS += -shared -lm -fPIC -DPIC
 
 # remove command
 RM = rm -f
@@ -28,10 +23,10 @@ OBJ = $(SRC:.cpp=.o)
 PLUGIN = $(NAME).so
 
 $(PLUGIN): $(OBJ)
-	$(LD) $(LDFLAGS) $(OBJ) -o $(PLUGIN) $(LIBS)
+	$(CXX) $(LDFLAGS) $(OBJ) -o $(PLUGIN)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CXX) $(CXXFLAGS) -o $@ $<
 
 clean:
 	$(RM) src/*.o $(PLUGIN)
