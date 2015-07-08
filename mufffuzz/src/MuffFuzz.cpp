@@ -8,7 +8,7 @@
 
 /**********************************************************************************************************************************************************/
 
-#define PLUGIN_URI "http://portalmod.com/plugins/mod-devel/MuffFuzz"
+#define PLUGIN_URI "http://moddevices.com/plugins/mod-devel/MuffFuzz"
 #define TAMANHO_DO_BUFFER 256
 enum {IN, OUT_1, LEVEL, PLUGIN_PORT_COUNT};
 

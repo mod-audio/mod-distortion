@@ -53,7 +53,7 @@ $(PLUGIN): $(OBJ)
 	$(LD) $(LDFLAGS) $(CFLAGS) $(OBJ) -o $(PLUGIN_SO) $(LIBS)
 
 %.o: %.$(EXT)
-	$(CC) $(CFLAGS) -DURI_PREFIX='"http://portalmod.com/plugins/guitarix"' -c -o $@ $<
+	$(CC) $(CFLAGS) -DURI_PREFIX='"http://moddevices.com/plugins/guitarix"' -c -o $@ $<
 
 clean:
 	$(RM) $(SRC_DIR)/*.o *.so $(PLUGIN)

@@ -8,7 +8,7 @@
 
 /**********************************************************************************************************************************************************/
 
-#define PLUGIN_URI "http://portalmod.com/plugins/mod-devel/BigMuffPi"
+#define PLUGIN_URI "http://moddevices.com/plugins/mod-devel/BigMuffPi"
 #define TAMANHO_DO_BUFFER 128
 enum {IN, OUT_1, TONE, LEVEL, SUSTAIN, PLUGIN_PORT_COUNT};
 
