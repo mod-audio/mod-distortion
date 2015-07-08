@@ -10,8 +10,8 @@ CC = g++
 LD = g++
 
 # flags
-# CFLAGS = -I. -O0 -g -ffast-math -Wall -Wextra -march=native -mtune=native -c -fPIC -DPIC
-CFLAGS += -I. -O6 -ffast-math -Wall -Wextra -march=native -mtune=native -c -fPIC -DPIC
+# CFLAGS = -I. -O0 -g -ffast-math -Wall -Wextra -c -fPIC -DPIC
+CFLAGS += -I. -O6 -ffast-math -Wall -Wextra -c -fPIC -DPIC
 LDFLAGS += -shared -lc -lm -fPIC -DPIC
 
 # libs
