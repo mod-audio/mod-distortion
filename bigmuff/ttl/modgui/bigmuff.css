@@ -154,21 +154,21 @@
 
 .mod-pedal-lata{{{cns}}} .mod-control-group .mod-knob {
     display:inline-block;
-    height:100px;
+    height:110px;
     position:relative;
     text-align:center;
-    width:79px;
+    width:100px;
 }
 
 .mod-pedal-lata{{{cns}}} .mod-control-group .mod-knob .mod-knob-image { 
     background-image:url(/resources/knobs/lata/lata.png{{{ns}}});
     background-position:left center;
     background-repeat:no-repeat;
-    background-size:auto 79px;
-    height:79px;
+    background-size:auto 90px;
+    height:90px;
     position:relative;
     overflow:hidden;
-    width:79px;
+    width:90px;
 }
 
 .mod-pedal-lata{{{cns}}}.mod-blue .mod-control-group .mod-knob > span.mod-knob-title { 
@@ -216,7 +216,7 @@
 }
 
 .mod-pedal-lata{{{cns}}} .mod-control-group .mod-knob > span.mod-knob-title {
-    bottom:6px;
+    bottom:0;
     display:block;
     font-size:11px;
     font-weight:bold;
@@ -257,7 +257,7 @@
   border-radius: 0;
 }
 .mod-bigmuff .mod-light {
-  top: 150px;
+  top: 163px;
 }
 .mod-bigmuff .mod-control-group {
   top: 20px;
