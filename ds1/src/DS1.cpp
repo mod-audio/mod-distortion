@@ -10,6 +10,10 @@
 
 #define PLUGIN_URI "http://moddevices.com/plugins/mod-devel/DS1"
 #define TAMANHO_DO_BUFFER 256
+
+#define INPUT_GAIN 1
+#define OUTPUT_GAIN 1
+
 enum {IN, OUT_1, TONE, LEVEL, DIST, PLUGIN_PORT_COUNT};
 
 /**********************************************************************************************************************************************************/
@@ -227,7 +231,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
     
     for (uint32_t i=1; i<=n_samples; i++)
     {
-		plugin->in[i-1] = 5.6234*plugin->in[i-1]; //15dB
+		plugin->in[i-1] = INPUT_GAIN*plugin->in[i-1]; //15dB
 	}
 	
 	//Over 2x
@@ -304,7 +308,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 	
 	 for (uint32_t i=1; i<=n_samples; i++)
     {
-		plugin->out_1[i-1] = plugin->out_1[i-1]/5.6234; //-15dB
+		plugin->out_1[i-1] = plugin->out_1[i-1]*OUTPUT_GAIN; //-15dB
 	}
     
 }
