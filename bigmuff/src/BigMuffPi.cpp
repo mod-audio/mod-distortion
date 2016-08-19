@@ -10,6 +10,10 @@
 
 #define PLUGIN_URI "http://moddevices.com/plugins/mod-devel/BigMuffPi"
 #define TAMANHO_DO_BUFFER 128
+
+#define INPUT_GAIN 1
+#define OUTPUT_GAIN 1
+
 enum {IN, OUT_1, TONE, LEVEL, SUSTAIN, PLUGIN_PORT_COUNT};
 
 /**********************************************************************************************************************************************************/
@@ -245,7 +249,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
     
     for (uint32_t i=1; i<=n_samples; i++)
     {
-		plugin->in[i-1] = 5.6234*plugin->in[i-1]; //15dB
+		plugin->in[i-1] = INPUT_GAIN*plugin->in[i-1]; //15dB
 	}
 	
 	//Over 2x
@@ -311,7 +315,7 @@ void Distortion::run(LV2_Handle instance, uint32_t n_samples)
 	
 	 for (uint32_t i=1; i<=n_samples; i++)
     {
-		plugin->out_1[i-1] = plugin->y3[i-1]/20; //-26dB
+		plugin->out_1[i-1] = plugin->y3[i-1]*OUTPUT_GAIN; //-26dB
 	}
 	
 	plugin->SustainMedia_1 = SustainMedia;
